@@ -234,7 +234,6 @@ extension FilterGenerator {
         
         filters.append(Filter(BlendWithAlphaMask(backgroundImage: blendImage, maskImage: maskImage)))
         filters.append(Filter(BlendWithMask(backgroundImage: maskImage, maskImage: blendImage)))
-        filters.append(Filter(ComicEffect()))
         filters.append(Filter(Convolution3X3()))
         filters.append(Filter(Convolution5X5()))
         filters.append(Filter(Convolution9Horizontal()))
@@ -243,6 +242,7 @@ extension FilterGenerator {
         filters.append(Filter(HighlightShadowAdjust()))
         filters.append(Filter(Pixellate(imageSize: size)))
         if #available(iOS 9.0, *) {
+            filters.append(Filter(ComicEffect()))
             filters.append(Filter(Convolution7X7()))
             filters.append(Filter(Crystallize(imageSize: size)))
             filters.append(Filter(DepthOfField()))

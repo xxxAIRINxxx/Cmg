@@ -83,6 +83,7 @@ InputRadiusAvailable, InputIntensityAvailable {
     }
 }
 
+@available(iOS 9.0, *)
 public struct ComicEffect: Filterable {
     
     public let filter: CIFilter = CIFilter(name: "CIComicEffect")!
