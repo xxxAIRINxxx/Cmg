@@ -28,7 +28,6 @@ public final class Context {
         
         #if (arch(i386) || arch(x86_64)) && os(iOS)
             self.defaultCIContext = CIContext(options: [
-                kCIContextUseSoftwareRenderer: true,
                 kCIContextPriorityRequestLow: true,
                 kCIContextOutputColorSpace: NSNull()
                 ])
