@@ -57,8 +57,8 @@ struct FilterGenerator {}
 extension FilterGenerator {
     
     #if (arch(i386) || arch(x86_64)) && os(iOS)
-    static let originalImage: UIImage = UIImage(named: "sample.jpg")!.cmg_resizeAtAspectFit(CGSize(width: 300, height: 300))!
-    static let thumbnailImage: UIImage = UIImage(named: "sample.jpg")!.cmg_resizeAtAspectFill(CGSize(width: 80, height: 80))!
+    static let originalImage: UIImage = UIImage(named: "sample.jpg")!
+    static let thumbnailImage: UIImage = UIImage(named: "sample.jpg")!.cmg_resizeAtAspectFill(CGSize(width: 300, height: 300))!
     #else
     static let originalImage: UIImage = UIImage(named: "sample.jpg")!
     static let thumbnailImage: UIImage = UIImage(named: "sample.jpg")!.cmg_resizeAtAspectFill(CGSize(width: 600, height: 600))!
