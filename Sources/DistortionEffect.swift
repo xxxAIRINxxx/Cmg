@@ -186,8 +186,8 @@ InputRefractionAvailable {
     public let inputRefraction: ScalarInput
     
     public init(imageSize: CGSize) {
-        self.inputPoint0 = VectorInput(.Color, self.filter, "inputPoint0")
-        self.inputPoint1 = VectorInput(.Color, self.filter, "inputPoint1")
+        self.inputPoint0 = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, "inputPoint0")
+        self.inputPoint1 = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, "inputPoint1")
         self.inputRadius = ScalarInput(filter: self.filter, key: kCIInputRadiusKey)
         self.inputRefraction = ScalarInput(filter: self.filter, key: "inputRefraction")
     }

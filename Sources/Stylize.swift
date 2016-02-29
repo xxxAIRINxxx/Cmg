@@ -233,9 +233,9 @@ InputUnsharpMaskRadiusAvailable, InputUnsharpMaskIntensityAvailable, InputRadius
     public let inputUnsharpMaskIntensity: ScalarInput
     public let inputRadius: ScalarInput
     
-    public init() {
-        self.inputPoint0 = VectorInput(.Color, self.filter, "inputPoint0")
-        self.inputPoint1 = VectorInput(.Color, self.filter, "inputPoint1")
+    public init(imageSize: CGSize) {
+        self.inputPoint0 = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, "inputPoint0")
+        self.inputPoint1 = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, "inputPoint1")
         self.inputSaturation = ScalarInput(filter: self.filter, key: kCIInputSaturationKey)
         self.inputUnsharpMaskRadius = ScalarInput(filter: self.filter, key: "inputUnsharpMaskRadius")
         self.inputUnsharpMaskIntensity = ScalarInput(filter: self.filter, key: "inputUnsharpMaskIntensity")

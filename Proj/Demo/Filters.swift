@@ -245,7 +245,7 @@ extension FilterGenerator {
             filters.append(Filter(ComicEffect()))
             filters.append(Filter(Convolution7X7()))
             filters.append(Filter(Crystallize(imageSize: size)))
-            filters.append(Filter(DepthOfField()))
+            filters.append(Filter(DepthOfField(imageSize: size)))
             filters.append(Filter(Edges()))
             filters.append(Filter(EdgeWork()))
             filters.append(Filter(HeightFieldFromMask()))

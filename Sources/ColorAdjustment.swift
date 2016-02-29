@@ -213,11 +213,11 @@ InputPoint0Available, InputPoint1Available, InputPoint2Available, InputPoint3Ava
     public let inputPoint4: VectorInput
     
     public init() {
-        self.inputPoint0 = VectorInput(.Color, self.filter, "inputPoint0")
-        self.inputPoint1 = VectorInput(.Color, self.filter, "inputPoint1")
-        self.inputPoint2 = VectorInput(.Color, self.filter, "inputPoint2")
-        self.inputPoint3 = VectorInput(.Color, self.filter, "inputPoint3")
-        self.inputPoint4 = VectorInput(.Color, self.filter, "inputPoint4")
+        self.inputPoint0 = VectorInput(.ColorOffset, self.filter, "inputPoint0")
+        self.inputPoint1 = VectorInput(.ColorOffset, self.filter, "inputPoint1")
+        self.inputPoint2 = VectorInput(.ColorOffset, self.filter, "inputPoint2")
+        self.inputPoint3 = VectorInput(.ColorOffset, self.filter, "inputPoint3")
+        self.inputPoint4 = VectorInput(.ColorOffset, self.filter, "inputPoint4")
     }
     
     public func inputs() -> [FilterInputable] {

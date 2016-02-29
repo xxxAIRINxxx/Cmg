@@ -14,6 +14,7 @@ public enum VectorType {
     case Position(maximumSize: Vector2)
     case Extent(extent: Vector4)
     case Color
+    case ColorOffset
     case Other(count: Int)
 }
 
@@ -64,6 +65,8 @@ public final class VectorInput: FilterInputable {
                 }
             case .Color:
                 self.ranges.append(Range(0.0, 1.0, Float(v)))
+            case .ColorOffset:
+                self.ranges.append(Range(0.0, 1.0, Float(v)))
             case .Other:
                 self.ranges.append(Range(0.0, 1.0, Float(v)))
             }
@@ -83,6 +86,8 @@ public final class VectorInput: FilterInputable {
             names = ["\(self.key) x", "\(self.key) y", "\(self.key) z" , "\(self.key) w"]
         case .Color:
             names = ["\(self.key) red", "\(self.key) green", "\(self.key) blue", "\(self.key) alpha"]
+        case .ColorOffset:
+            names = ["\(self.key) x", "\(self.key) y"]
         case .Other:
             names = []
             self.values.enumerate().forEach() {
