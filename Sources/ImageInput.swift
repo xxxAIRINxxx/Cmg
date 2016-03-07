@@ -24,7 +24,7 @@ public final class ImageInput: FilterInputable {
         self.range = Range(0.0, 1.0, 1.0)
     }
     
-    public func sliderRanges() -> [Slider] {
+    public func sliders() -> [Slider] {
         let value: [Slider] = [Slider(self.key, self.range) { [weak self] value in
             self?.alpha = CGFloat(value)
             }]

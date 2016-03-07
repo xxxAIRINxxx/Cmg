@@ -26,8 +26,8 @@ extension CompositeFilterable {
         set { self.compositeOperator.inputBackgroundImage.updateAlpha(newValue) }
     }
     
-    public func sliderRanges() -> [Slider] {
-        return self.compositeOperator.inputBackgroundImage.sliderRanges()
+    public func sliders() -> [Slider] {
+        return self.compositeOperator.inputBackgroundImage.sliders()
     }
     
     public func setupFilter() {

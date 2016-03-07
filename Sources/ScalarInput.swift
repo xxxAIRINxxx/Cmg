@@ -23,7 +23,7 @@ public final class ScalarInput: FilterInputable {
         self.value = defaultValue ?? range.initialValue
     }
     
-    public func sliderRanges() -> [Slider] {
+    public func sliders() -> [Slider] {
         return [
           Slider(self.key, self.range) { [weak self] value in
                 self?.setValue(value)

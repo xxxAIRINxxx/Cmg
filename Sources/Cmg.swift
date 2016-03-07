@@ -21,7 +21,7 @@ public protocol Processable {
     func processingIntoCIImage(uiImage: UIImage) -> CIImage?
     
     // slider support
-    func sliderRanges() -> [Slider]
+    func sliders() -> [Slider]
 }
 
 extension Processable {
@@ -36,10 +36,10 @@ extension Processable {
         return self.processing(ciImage)
     }
     
-    public func sliderRanges() -> [Slider] { return [] }
+    public func sliders() -> [Slider] { return [] }
     
     public func resetSilderValues() {
-        self.sliderRanges().forEach() { $0.resetValue() }
+        self.sliders().forEach() { $0.resetValue() }
     }
 }
 
@@ -74,7 +74,7 @@ extension Filterable {
 
 public protocol FilterInputable {
     
-    func sliderRanges() -> [Slider]
+    func sliders() -> [Slider]
     
     func setInput(filter: CIFilter)
     
@@ -97,9 +97,9 @@ extension FilterInputCollectionType {
 
 extension Filterable where Self: FilterInputCollectionType {
     
-    public func sliderRanges() -> [Slider] {
+    public func sliders() -> [Slider] {
         let value: [Slider] = []
-        return self.inputs().reduce(value) { $0.0 + $0.1.sliderRanges() }
+        return self.inputs().reduce(value) { $0.0 + $0.1.sliders() }
     }
     
     public func setupFilter() {

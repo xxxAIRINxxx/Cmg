@@ -36,7 +36,7 @@ public final class StringInput: FilterInputable {
             self.initialValue = self.value
     }
     
-    public func sliderRanges() -> [Slider] {
+    public func sliders() -> [Slider] {
         return []
     }
     

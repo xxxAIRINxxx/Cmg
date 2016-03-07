@@ -77,7 +77,7 @@ public final class VectorInput: FilterInputable {
         self.values[index] = value
     }
     
-    public func sliderRanges() -> [Slider] {
+    public func sliders() -> [Slider] {
         var names: [String]
         switch type {
         case .Position(_):

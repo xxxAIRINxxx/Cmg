@@ -35,7 +35,7 @@ public final class ColorInput: FilterInputable {
         self.initialValue = UIColor(red: self.red, green: self.green, blue: self.blue, alpha: self.alpha)
     }
     
-    public func sliderRanges() -> [Slider] {
+    public func sliders() -> [Slider] {
         return [
           Slider("red", Range(0.0, 255.0, Float(self.red))) { [weak self] value in
                 self?.red = CGFloat(value)

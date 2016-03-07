@@ -39,9 +39,9 @@ public struct FilterGroup: Processable {
         self.filters.append(filter)
     }
     
-    public func sliderRanges() -> [Slider] {
+    public func sliders() -> [Slider] {
         let sliderRanges: [Slider] = []
-        let values = self.filters.reduce(sliderRanges) {return $0.0 + $0.1.sliderRanges() }
+        let values = self.filters.reduce(sliderRanges) {return $0.0 + $0.1.sliders() }
         return values
     }
     

@@ -46,8 +46,8 @@ public struct ColorCube: Filterable, InputCubeDimensionAvailable {
         self.cubeData = inputCubeData
     }
     
-    public func sliderRanges() -> [Slider] {
-        return self.inputCubeDimension.sliderRanges()
+    public func sliders() -> [Slider] {
+        return self.inputCubeDimension.sliders()
     }
     
     public func setupFilter() {
@@ -70,8 +70,8 @@ public struct ColorCubeWithColorSpace: Filterable, InputCubeDimensionAvailable {
         self.colorSpace = inputColorSpace
     }
     
-    public func sliderRanges() -> [Slider] {
-        return self.inputCubeDimension.sliderRanges()
+    public func sliders() -> [Slider] {
+        return self.inputCubeDimension.sliders()
     }
     
     public func setupFilter() {

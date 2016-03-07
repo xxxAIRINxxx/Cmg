@@ -32,7 +32,7 @@ final class Filter<T: Cmg.Processable>: PhotoProcessable {
     
     init(_ filter: FilterClass) {
         self.name = filter.name
-        self.sliders = filter.sliderRanges()
+        self.sliders = filter.sliders()
         self.internalFilter = filter
     }
     

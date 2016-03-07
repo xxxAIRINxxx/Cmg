@@ -24,7 +24,7 @@ public final class AffineTransformInput: FilterInputable {
         self.initialValue = self.value
     }
     
-    public func sliderRanges() -> [Slider] {
+    public func sliders() -> [Slider] {
         return []
     }
     
