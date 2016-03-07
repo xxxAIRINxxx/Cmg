@@ -12,7 +12,7 @@ import CoreImage
 
 public final class Context {
     
-    public static var shared = Context()
+    public static let shared = Context()
     
     public static var egleContext : EAGLContext { return Context.shared.egleContext ?? Context.shared.defaultEgleContext }
     public static var ciContext : CIContext { return Context.shared.ciContext ?? Context.shared.defaultCIContext }
