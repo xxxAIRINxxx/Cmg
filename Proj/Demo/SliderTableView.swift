@@ -14,7 +14,7 @@ final class SliderTableView: UITableView {
     
     var upsdateSliderHandler: (Void -> Void)?
     
-    private var sliderRanges: [Slider] = []
+    private var sliders: [Slider] = []
 
     override init(frame: CGRect, style: UITableViewStyle) {
         super.init(frame: frame, style: style)
@@ -33,7 +33,7 @@ final class SliderTableView: UITableView {
     }
     
     func updateSliders(filter: PhotoProcessable) {
-        self.sliderRanges = filter.sliders
+        self.sliders = filter.sliders
         self.reloadData()
     }
 }
@@ -41,21 +41,21 @@ final class SliderTableView: UITableView {
 extension SliderTableView: UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.sliderRanges.count
+        return self.sliders.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("SliderCell", forIndexPath: indexPath) as! SliderCell
         
-        let sliderRange = self.sliderRanges[indexPath.row]
+        let slider = self.sliders[indexPath.row]
         
-        cell.label.text = sliderRange.name
-        cell.valueLabel.text = sliderRange.currentValue.description
-        cell.slider.maximumValue = sliderRange.range.maximumValue
-        cell.slider.minimumValue = sliderRange.range.minimumValue
-        cell.slider.value = sliderRange.currentValue
+        cell.label.text = slider.name
+        cell.valueLabel.text = slider.currentValue.description
+        cell.slider.maximumValue = slider.range.maximumValue
+        cell.slider.minimumValue = slider.range.minimumValue
+        cell.slider.value = slider.currentValue
         cell.upsdateSliderHandler = { [weak self] value in
-          sliderRange.currentValue = value
+          slider.currentValue = value
             self?.upsdateSliderHandler?()
         }
         
