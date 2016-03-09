@@ -66,7 +66,7 @@ let filteredImage = filterGroup.processing(image)
 ### Filter Chaining
 
 ```swift
-let filteredImage = image.cmg_filterChainProcessing([
+let filteredImage = image.cmg_chain([
     ComicEffect(),
     GaussianBlur().configuration({ filter in
         filter.inputRadius.setValue(15)

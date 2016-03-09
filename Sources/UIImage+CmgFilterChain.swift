@@ -15,7 +15,7 @@ import CoreImage
 /** 
     example
 
-    let filteredImage = image.cmg_filterChainProcessing([
+    let filteredImage = image.cmg_chain([
         ComicEffect(),
         GaussianBlur().configuration({ filter in
             filter.inputRadius.setValue(15)
@@ -36,7 +36,7 @@ extension Filterable {
 
 extension UIImage {
     
-    public func cmg_filterChainProcessing(filters: [Filterable]) -> UIImage? {
+    public func cmg_chain(filters: [Filterable]) -> UIImage? {
         return filters.reduce(self) { return $0.1.processing($0.0) ?? $0.0 }
     }
 }
