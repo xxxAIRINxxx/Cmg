@@ -81,6 +81,7 @@
 		9188C7481C71E0BC004FFAEF /* Gradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gradient.swift; sourceTree = "<group>"; };
 		9188C74F1C71E6E3004FFAEF /* HalftoneEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HalftoneEffect.swift; sourceTree = "<group>"; };
 		9188C7511C71EAA5004FFAEF /* DistortionEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistortionEffect.swift; sourceTree = "<group>"; };
+		918B2EAC1C8FEEA400FBEA06 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		9192C56D1C7DB03F001B3791 /* FaceDetection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceDetection.swift; sourceTree = "<group>"; };
 		919761941C74B61E005F102D /* Slider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Slider.swift; sourceTree = "<group>"; };
 		91C23F471C72147800F08CD6 /* GeometryAdjustment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeometryAdjustment.swift; sourceTree = "<group>"; };
@@ -202,6 +203,7 @@
 		91EEBA221C603F13008E25FC = {
 			isa = PBXGroup;
 			children = (
+				918B2EAC1C8FEEA400FBEA06 /* README.md */,
 				91EEBA801C604009008E25FC /* Sources */,
 				9188C71F1C71708D004FFAEF /* CmgTests */,
 				91EEBA2D1C603F13008E25FC /* Products */,
