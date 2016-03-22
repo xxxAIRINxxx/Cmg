@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:../README.md">
+   </FileRef>
+   <FileRef
+      location = "group:../Cmg.podspec">
+   </FileRef>
+   <FileRef
       location = "group:Cmg.xcodeproj">
    </FileRef>
    <FileRef
