@@ -14,7 +14,7 @@ public final class Benchmarker {
     
     private var benchmarks : [Benchmark] = []
     
-    public func start(key: String = __FILE__ + __FUNCTION__) {
+    public func start(key: String = #file + #function) {
         let filterd = self.benchmarks.filter({ return $0.key == key }).first
         if filterd == nil {
             self.benchmarks.append(Benchmark(key: key))
@@ -41,7 +41,7 @@ public final class Benchmark {
     public let startTime : CFAbsoluteTime
     public let key : String
     
-    public convenience init(fileName: String = __FILE__ , funcName: String = __FUNCTION__) {
+    public convenience init(fileName: String = #file , funcName: String = #function) {
         let _fileName = fileName.componentsSeparatedByString("/").last ?? ""
         let key = _fileName + " " + funcName
         self.init(key: key)
