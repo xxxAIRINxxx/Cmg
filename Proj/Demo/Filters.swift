@@ -54,15 +54,24 @@ final class Filter<T: Cmg.Processable>: PhotoProcessable {
 
 struct FilterGenerator {}
 
+enum Image {
+    case Original
+    case Thumbnail
+    
+    var size : CGSize {
+        switch self {
+        case .Original:
+            return CGSize(width: 1200, height: 1200)
+        case .Thumbnail:
+            return CGSize(width: 600, height: 600)
+        }
+    }
+}
+
 extension FilterGenerator {
     
-    #if (arch(i386) || arch(x86_64)) && os(iOS)
-    static let originalImage: UIImage = UIImage(named: "sample.jpg")!
-    static let thumbnailImage: UIImage = UIImage(named: "sample.jpg")!.cmg_resizeAtAspectFill(CGSize(width: 300, height: 300))!
-    #else
-    static let originalImage: UIImage = UIImage(named: "sample.jpg")!
-    static let thumbnailImage: UIImage = UIImage(named: "sample.jpg")!.cmg_resizeAtAspectFill(CGSize(width: 600, height: 600))!
-    #endif
+    static var originalImage: UIImage = UIImage(named: "sample.jpg")!
+    static var thumbnailImage: UIImage = UIImage(named: "sample.jpg")!.cmg_resizeAtAspectFill(Image.Thumbnail.size)!
     
     static func generate() -> [PhotoProcessable] {
         var filters: [PhotoProcessable] = []

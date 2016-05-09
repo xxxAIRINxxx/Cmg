@@ -26,6 +26,11 @@ final class ViewController: UIViewController {
     }
     
     private func setup() {
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Photo",
+                                                                 style: .Plain,
+                                                                 target: self,
+                                                                 action: #selector(ViewController.requestPhoto))
+        
         self.imageView.image = FilterGenerator.originalImage
         
         self.collectionView.registerNib(UINib(nibName: "FilterCell", bundle: nil), forCellWithReuseIdentifier: "FilterCell")
@@ -42,6 +47,25 @@ final class ViewController: UIViewController {
         self.sliderTableView.upsdateSliderHandler = { [unowned self] in
             let image = self.selectedFilter!.processing(FilterGenerator.originalImage)
             self.imageView.image = image
+        }
+    }
+    
+    @objc private func requestPhoto() {
+        PhotoRequester.showActionSheet(self) { [unowned self] result in
+            switch result {
+            case .Success(let image):
+                let _image = image.fixOrientation()
+                FilterGenerator.originalImage = _image.cmg_resizeAtAspectFit(Image.Original.size)!
+                FilterGenerator.thumbnailImage = _image.cmg_resizeAtAspectFit(Image.Thumbnail.size)!
+                self.imageView.image = _image
+                self.filters = FilterGenerator.generate()
+                self.selectedFilter = nil
+                self.collectionView.reloadData()
+            case .Faild:
+                break
+            case .Cancel:
+                break
+            }
         }
     }
 }
