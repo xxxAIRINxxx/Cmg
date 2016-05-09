@@ -57,7 +57,7 @@ final class ViewController: UIViewController {
                 let _image = image.fixOrientation()
                 FilterGenerator.originalImage = _image.cmg_resizeAtAspectFit(Image.Original.size)!
                 FilterGenerator.thumbnailImage = _image.cmg_resizeAtAspectFit(Image.Thumbnail.size)!
-                self.imageView.image = _image
+                self.imageView.image = FilterGenerator.originalImage
                 self.filters = FilterGenerator.generate()
                 self.selectedFilter = nil
                 self.collectionView.reloadData()
