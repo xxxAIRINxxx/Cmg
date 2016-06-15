@@ -100,7 +100,7 @@ pod "Cmg"
 
 ### Carthage
 
-To integrate Chain into your Xcode project using Carthage, specify it in your Cartfile:
+To integrate Cmg into your Xcode project using Carthage, specify it in your Cartfile:
 
 ```ruby
 github "xxxAIRINxxx/Cmg"
