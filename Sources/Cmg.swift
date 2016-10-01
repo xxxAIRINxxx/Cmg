@@ -16,9 +16,9 @@ public protocol Processable {
     
     var name: String { get }
     
-    func processing(uiImage: UIImage) -> UIImage?
-    func processing(ciImage: CIImage?) -> CIImage?
-    func processingIntoCIImage(uiImage: UIImage) -> CIImage?
+    func processing(_ uiImage: UIImage) -> UIImage?
+    func processing(_ ciImage: CIImage?) -> CIImage?
+    func processingIntoCIImage(_ uiImage: UIImage) -> CIImage?
     
     // slider support
     func sliders() -> [Slider]
@@ -26,12 +26,12 @@ public protocol Processable {
 
 extension Processable {
     
-    public func processing(uiImage: UIImage) -> UIImage? {
+    public func processing(_ uiImage: UIImage) -> UIImage? {
         let ciImage = CIImage.generate(uiImage)
         return self.processing(ciImage)?.generateUIImage(uiImage)
     }
     
-    public func processingIntoCIImage(uiImage: UIImage) -> CIImage? {
+    public func processingIntoCIImage(_ uiImage: UIImage) -> CIImage? {
         let ciImage = CIImage.generate(uiImage)
         return self.processing(ciImage)
     }
@@ -56,7 +56,7 @@ extension Filterable {
     
     public var name: String { return self.filter.name }
     
-    public func processing(ciImage: CIImage?) -> CIImage? {
+    public func processing(_ ciImage: CIImage?) -> CIImage? {
         guard let _ciImage = ciImage else { return nil }
         
         self.filter.setDefaults()
@@ -76,7 +76,7 @@ public protocol FilterInputable {
     
     func sliders() -> [Slider]
     
-    func setInput(filter: CIFilter)
+    func setInput(_ filter: CIFilter)
     
     func resetValue()
 }
@@ -117,11 +117,11 @@ extension InputImageUnusable {
         return self.processing(ciImage: nil)?.generateUIImage()
     }
     
-    public func processing(uiImage: UIImage) -> UIImage? {
+    public func processing(_ uiImage: UIImage) -> UIImage? {
         return self.processing(ciImage: nil)?.generateUIImage(uiImage)
     }
     
-    public func processing(ciImage ciImage: CIImage?) -> CIImage? {
+    public func processing(ciImage: CIImage?) -> CIImage? {
         self.filter.setDefaults()
         self.setupFilter()
         let outputImage = self.filter.outputImage

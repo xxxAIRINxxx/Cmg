@@ -11,7 +11,7 @@ import UIKit
 
 final class StretchImageView: UIView, UIScrollViewDelegate {
     
-    private static let maxZoomScale: CGFloat = 3
+    fileprivate static let maxZoomScale: CGFloat = 3
     
     var image : UIImage? {
         get { return self.imageView.image }
@@ -24,8 +24,8 @@ final class StretchImageView: UIView, UIScrollViewDelegate {
         }
     }
     
-    private var imageView : UIImageView!
-    private var scrollView : UIScrollView!
+    fileprivate var imageView : UIImageView!
+    fileprivate var scrollView : UIScrollView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -43,26 +43,26 @@ final class StretchImageView: UIView, UIScrollViewDelegate {
         self.scrollView.contentSize = self.imageView.frame.size
     }
     
-    func addToParentView(parentView: UIView) {
+    func addToParentView(_ parentView: UIView) {
         self.frame = parentView.bounds
-        self.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        self.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         parentView.addSubview(self)
     }
     
-    private func setup() {
+    fileprivate func setup() {
         self.scrollView = UIScrollView(frame: self.bounds)
         self.scrollView.showsHorizontalScrollIndicator = false
         self.scrollView.showsVerticalScrollIndicator = false
         self.scrollView.delegate = self
-        self.scrollView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        self.scrollView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.scrollView.panGestureRecognizer.delaysTouchesBegan = false
         self.scrollView.panGestureRecognizer.minimumNumberOfTouches = 1
         self.scrollView.bounces = false
         self.addSubview(self.scrollView)
         
         self.imageView = UIImageView(frame: self.bounds)
-        self.imageView.userInteractionEnabled = true
-        self.imageView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        self.imageView.isUserInteractionEnabled = true
+        self.imageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.scrollView.addSubview(self.imageView)
     }
     
@@ -73,17 +73,17 @@ final class StretchImageView: UIView, UIScrollViewDelegate {
             let W = ratio * size.width * self.scrollView.zoomScale
             let H = ratio * size.height * self.scrollView.zoomScale
             
-            self.imageView.frame = CGRectMake(
-                max(0, (self.scrollView.frame.size.width - W) / 2),
-                max(0, (self.scrollView.frame.size.height - H) / 2), W, H)
+            self.imageView.frame = CGRect(
+                x: max(0, (self.scrollView.frame.size.width - W) / 2),
+                y: max(0, (self.scrollView.frame.size.height - H) / 2), width: W, height: H)
         }
     }
     
-    func resetZoomScale(animated: Bool) {
+    func resetZoomScale(_ animated: Bool) {
         var Rw = self.scrollView.frame.size.width / self.imageView.frame.size.width
         var Rh = self.scrollView.frame.size.height / self.imageView.frame.size.height
         
-        let scale: CGFloat = UIScreen.mainScreen().scale
+        let scale: CGFloat = UIScreen.main.scale
         Rw = max(Rw, self.imageView.image!.size.width / (scale * self.scrollView.frame.size.width))
         Rh = max(Rh, self.imageView.image!.size.height / (scale * self.scrollView.frame.size.height))
         
@@ -94,7 +94,7 @@ final class StretchImageView: UIView, UIScrollViewDelegate {
         self.scrollView.setZoomScale(self.scrollView.minimumZoomScale, animated: animated)
     }
     
-    func reset(animated: Bool) {
+    func reset(_ animated: Bool) {
         self.resetImageViewFrame()
         self.resetZoomScale(animated)
     }
@@ -104,11 +104,11 @@ final class StretchImageView: UIView, UIScrollViewDelegate {
 
 extension StretchImageView {
     
-    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+    @objc(viewForZoomingInScrollView:) func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return self.imageView
     }
     
-    func scrollViewDidZoom(scrollView: UIScrollView) {
+    func scrollViewDidZoom(_ scrollView: UIScrollView) {
         let Ws = self.scrollView.frame.size.width - self.scrollView.contentInset.left - self.scrollView.contentInset.right
         let Hs = self.scrollView.frame.size.height - self.scrollView.contentInset.top - self.scrollView.contentInset.bottom
         let W = self.imageView.frame.size.width

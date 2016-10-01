@@ -35,7 +35,7 @@ extension CompositeFilterable {
     }
     
     public init(uiImage: UIImage) {
-        self.init(backgroundImage: CIImage(CGImage: uiImage.CGImage!))
+        self.init(backgroundImage: CIImage(cgImage: uiImage.cgImage!))
     }
 }
 
@@ -46,7 +46,7 @@ public final class CompositeOperator {
     
     public init(filter: CIFilter, _ uiImage: UIImage) {
         self.filter = filter
-        self.inputBackgroundImage = ImageInput(image: CIImage(CGImage: uiImage.CGImage!), key: kCIInputBackgroundImageKey)
+        self.inputBackgroundImage = ImageInput(image: CIImage(cgImage: uiImage.cgImage!), key: kCIInputBackgroundImageKey)
     }
     
     public init(filter: CIFilter, _ ciImage: CIImage) {

@@ -11,21 +11,21 @@ import UIKit
 import CoreImage
 
 public enum VectorType {
-    case Position(maximumSize: Vector2)
-    case Extent(extent: Vector4)
-    case Color
-    case ColorOffset
-    case Other(count: Int)
+    case position(maximumSize: Vector2)
+    case extent(extent: Vector4)
+    case color
+    case colorOffset
+    case other(count: Int)
 }
 
 public final class VectorInput: FilterInputable {
     public let type: VectorType
     public let key: String
     
-    public private(set) var values: [CGFloat] = []
-    public private(set) var ranges: [Range] = []
+    public fileprivate(set) var values: [CGFloat] = []
+    public fileprivate(set) var ranges: [Range] = []
     
-    private var initialValue: CIVector?
+    fileprivate var initialValue: CIVector?
     
     init(_ type: VectorType, _ filter: CIFilter, _ key: String) {
         self.type = type
@@ -40,22 +40,22 @@ public final class VectorInput: FilterInputable {
         }
     }
     
-    public func setVector(vector: CIVector) {
+    public func setVector(_ vector: CIVector) {
         self.values.removeAll()
         self.ranges.removeAll()
         
         for i in 0..<vector.count {
-            let v: CGFloat = vector.valueAtIndex(i)
+            let v: CGFloat = vector.value(at: i)
             self.values.append(v)
             
             switch type {
-            case .Position(let maximumSize):
+            case .position(let maximumSize):
                 switch i {
                 case 0: self.ranges.append(Range(0.0, Float(maximumSize.x), Float(v)))
                 case 1: self.ranges.append(Range(0.0, Float(maximumSize.y), Float(v)))
                 default: break
                 }
-            case .Extent(let extent):
+            case .extent(let extent):
                 switch i {
                 case 0: self.ranges.append(Range(0.0, Float(extent.z), Float(v)))
                 case 1: self.ranges.append(Range(0.0, Float(extent.w), Float(v)))
@@ -63,45 +63,46 @@ public final class VectorInput: FilterInputable {
                 case 3: self.ranges.append(Range(0.0, Float(extent.w), Float(v)))
                 default: break
                 }
-            case .Color:
+            case .color:
                 self.ranges.append(Range(0.0, 1.0, Float(v)))
-            case .ColorOffset:
+            case .colorOffset:
                 self.ranges.append(Range(0.0, 1.0, Float(v)))
-            case .Other:
+            case .other:
                 self.ranges.append(Range(0.0, 1.0, Float(v)))
             }
         }
     }
     
-    internal func setValue(index: Int, value: CGFloat) {
+    internal func setValue(_ index: Int, value: CGFloat) {
         self.values[index] = value
     }
     
     public func sliders() -> [Slider] {
         var names: [String]
         switch type {
-        case .Position(_):
+        case .position(_):
             names = ["\(self.key) x", "\(self.key) y"]
-        case .Extent(_):
+        case .extent(_):
             names = ["\(self.key) x", "\(self.key) y", "\(self.key) z" , "\(self.key) w"]
-        case .Color:
+        case .color:
             names = ["\(self.key) red", "\(self.key) green", "\(self.key) blue", "\(self.key) alpha"]
-        case .ColorOffset:
+        case .colorOffset:
             names = ["\(self.key) x", "\(self.key) y"]
-        case .Other:
+        case .other:
             names = []
-            self.values.enumerate().forEach() {
-                names.append("\(self.key) \($0.index)")
+            self.values.enumerated().forEach() {
+                names.append("\(self.key) \($0.0)")
             }
         }
-        return self.values.enumerate().map() { i in
-            return Slider(names[i.index], self.ranges[i.index]) { [weak self] value in
-                self?.setValue(i.index, value: CGFloat(value))
-            }
-        }
+        return []
+//        return self.values.enumerated().map { i in
+//            return Slider(names[i.1], self.ranges[i.0]) { [weak self] value in
+//                self?.setValue(i.index, value: CGFloat(value))
+//            }
+//        }
     }
     
-    public func setInput(filter: CIFilter) {
+    public func setInput(_ filter: CIFilter) {
         filter.setValue(CIVector(values: self.values, count: self.values.count), forKey: self.key)
     }
     

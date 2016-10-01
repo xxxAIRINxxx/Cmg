@@ -14,10 +14,10 @@ public final class AffineTransformInput: FilterInputable {
     
     public var value: CGAffineTransform
     
-    private let initialValue: CGAffineTransform
+    fileprivate let initialValue: CGAffineTransform
     
     public init() {
-        self.value = CGAffineTransformIdentity
+        self.value = CGAffineTransform.identity
         self.value.a = 1.0
         self.value.d = 1.0
         
@@ -28,8 +28,8 @@ public final class AffineTransformInput: FilterInputable {
         return []
     }
     
-    public func setInput(filter: CIFilter) {
-        filter.setValue(NSValue(CGAffineTransform: self.value), forKey: kCIInputTransformKey)
+    public func setInput(_ filter: CIFilter) {
+        filter.setValue(NSValue(cgAffineTransform: self.value), forKey: kCIInputTransformKey)
     }
     
     public func resetValue() {

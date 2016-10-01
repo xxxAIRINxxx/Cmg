@@ -19,8 +19,8 @@ InputMinComponentsAvailable, InputMaxComponentsAvailable {
     public let inputMaxComponents: VectorInput
     
     public init() {
-        self.inputMinComponents = VectorInput(.Color, self.filter, "inputMinComponents")
-        self.inputMaxComponents = VectorInput(.Color, self.filter, "inputMaxComponents")
+        self.inputMinComponents = VectorInput(.color, self.filter, "inputMinComponents")
+        self.inputMaxComponents = VectorInput(.color, self.filter, "inputMaxComponents")
     }
     
     public func inputs() -> [FilterInputable] {
@@ -67,11 +67,11 @@ InputRVectorAvailable, InputGVectorAvailable, InputBVectorAvailable, InputAVecto
     public let inputBiasVector: VectorInput
     
     public init() {
-        self.inputRVector = VectorInput(.Color, self.filter, "inputRVector")
-        self.inputGVector = VectorInput(.Color, self.filter, "inputGVector")
-        self.inputBVector = VectorInput(.Color, self.filter, "inputBVector")
-        self.inputAVector = VectorInput(.Color, self.filter, "inputAVector")
-        self.inputBiasVector = VectorInput(.Color, self.filter, "inputBiasVector")
+        self.inputRVector = VectorInput(.color, self.filter, "inputRVector")
+        self.inputGVector = VectorInput(.color, self.filter, "inputGVector")
+        self.inputBVector = VectorInput(.color, self.filter, "inputBVector")
+        self.inputAVector = VectorInput(.color, self.filter, "inputAVector")
+        self.inputBiasVector = VectorInput(.color, self.filter, "inputBiasVector")
     }
     
     public func inputs() -> [FilterInputable] {
@@ -96,10 +96,10 @@ InputRedCoefficientsAvailable, InputGreenCoefficientsAvailable, InputBlueCoeffic
     public let inputAlphaCoefficients: VectorInput
     
     public init() {
-        self.inputRedCoefficients = VectorInput(.Color, self.filter, "inputRedCoefficients")
-        self.inputGreenCoefficients = VectorInput(.Color, self.filter, "inputGreenCoefficients")
-        self.inputBlueCoefficients = VectorInput(.Color, self.filter, "inputBlueCoefficients")
-        self.inputAlphaCoefficients = VectorInput(.Color, self.filter, "inputAlphaCoefficients")
+        self.inputRedCoefficients = VectorInput(.color, self.filter, "inputRedCoefficients")
+        self.inputGreenCoefficients = VectorInput(.color, self.filter, "inputGreenCoefficients")
+        self.inputBlueCoefficients = VectorInput(.color, self.filter, "inputBlueCoefficients")
+        self.inputAlphaCoefficients = VectorInput(.color, self.filter, "inputAlphaCoefficients")
     }
     
     public func inputs() -> [FilterInputable] {
@@ -189,8 +189,8 @@ InputNeutralAvailable, InputTargetNeutralAvailable {
     public var inputTargetNeutral: VectorInput
     
     public init() {
-        self.inputNeutral = VectorInput(.Other(count: 2), self.filter, "inputNeutral")
-        self.inputTargetNeutral = VectorInput(.Other(count: 2), self.filter, "inputTargetNeutral")
+        self.inputNeutral = VectorInput(.other(count: 2), self.filter, "inputNeutral")
+        self.inputTargetNeutral = VectorInput(.other(count: 2), self.filter, "inputTargetNeutral")
     }
     
     public func inputs() -> [FilterInputable] {
@@ -213,11 +213,11 @@ InputPoint0Available, InputPoint1Available, InputPoint2Available, InputPoint3Ava
     public let inputPoint4: VectorInput
     
     public init() {
-        self.inputPoint0 = VectorInput(.ColorOffset, self.filter, "inputPoint0")
-        self.inputPoint1 = VectorInput(.ColorOffset, self.filter, "inputPoint1")
-        self.inputPoint2 = VectorInput(.ColorOffset, self.filter, "inputPoint2")
-        self.inputPoint3 = VectorInput(.ColorOffset, self.filter, "inputPoint3")
-        self.inputPoint4 = VectorInput(.ColorOffset, self.filter, "inputPoint4")
+        self.inputPoint0 = VectorInput(.colorOffset, self.filter, "inputPoint0")
+        self.inputPoint1 = VectorInput(.colorOffset, self.filter, "inputPoint1")
+        self.inputPoint2 = VectorInput(.colorOffset, self.filter, "inputPoint2")
+        self.inputPoint3 = VectorInput(.colorOffset, self.filter, "inputPoint3")
+        self.inputPoint4 = VectorInput(.colorOffset, self.filter, "inputPoint4")
     }
     
     public func inputs() -> [FilterInputable] {

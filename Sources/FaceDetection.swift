@@ -11,29 +11,29 @@ import UIKit
 import CoreImage
 
 public enum Accuracy {
-    case Low
-    case High
+    case low
+    case high
     
     var options: [String : AnyObject] {
         switch self {
-        case .Low:
-            return [CIDetectorAccuracy: CIDetectorAccuracyLow]
-        case .High:
-            return [CIDetectorAccuracy: CIDetectorAccuracyHigh]
+        case .low:
+            return [CIDetectorAccuracy: CIDetectorAccuracyLow as AnyObject]
+        case .high:
+            return [CIDetectorAccuracy: CIDetectorAccuracyHigh as AnyObject]
         }
     }
 }
 
 public enum Option {
-    case Smile
-    case EyeBlink
+    case smile
+    case eyeBlink
     
     var options: [String : AnyObject] {
         switch self {
-        case .Smile:
-            return [CIDetectorSmile: true]
-        case .EyeBlink:
-            return [CIDetectorEyeBlink: true]
+        case .smile:
+            return [CIDetectorSmile: true as AnyObject]
+        case .eyeBlink:
+            return [CIDetectorEyeBlink: true as AnyObject]
         }
     }
 }
@@ -42,21 +42,21 @@ public struct FaceDetection {
     
     public let accuracy: Accuracy
     
-    public init(accuracy: Accuracy = .High) {
+    public init(accuracy: Accuracy = .high) {
         self.accuracy = accuracy
         
 //        let options: [String : AnyObject] = [CIDetectorSmile: true, CIDetectorEyeBlink: true]
 //        let detector = CIDetector(ofType: CIDetectorTypeFace, context: nil, options: [CIDetectorAccuracy: CIDetectorAccuracyLow])
     }
     
-    public func processing(uiImage: UIImage) -> [CIFaceFeature] {
+    public func processing(_ uiImage: UIImage) -> [CIFaceFeature] {
         guard let ciImage = CIImage.generate(uiImage) else { return [] }
         
         let detector = CIDetector(ofType: CIDetectorTypeFace, context: nil, options: self.accuracy.options)
-        return detector.featuresInImage(ciImage, options: [:]).flatMap() { $0 as? CIFaceFeature }
+        return detector!.features(in: ciImage, options: [:]).flatMap() { $0 as? CIFaceFeature }
     }
     
-    public func detectionOfFaceBounds(image: UIImage) -> [CGRect] {
+    public func detectionOfFaceBounds(_ image: UIImage) -> [CGRect] {
         let features = self.processing(image)
         
         return features.map() {

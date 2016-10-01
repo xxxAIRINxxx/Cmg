@@ -14,7 +14,7 @@ public final class ScalarInput: FilterInputable {
     
     public let key: String
     public let range: Range
-    public private(set) var value: Float
+    public fileprivate(set) var value: Float
     
     public init(filter: CIFilter, key: String, _ defaultValue: Float? = nil) {
         self.key = key
@@ -31,11 +31,11 @@ public final class ScalarInput: FilterInputable {
         ]
     }
     
-    public func setInput(filter: CIFilter) {
+    public func setInput(_ filter: CIFilter) {
         filter.setValue(self.value, forKey: self.key)
     }
     
-    public func setValue(value: Float) {
+    public func setValue(_ value: Float) {
         self.value = self.range.convertValue(value)
     }
     

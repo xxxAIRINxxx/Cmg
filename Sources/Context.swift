@@ -17,22 +17,29 @@ public final class Context {
     public static var egleContext : EAGLContext { return Context.shared.egleContext ?? Context.shared.defaultEgleContext }
     public static var ciContext : CIContext { return Context.shared.ciContext ?? Context.shared.defaultCIContext }
     
+    public static var options: [String : Any] {
+        #if (arch(i386) || arch(x86_64)) && os(iOS)
+            return [
+                kCIContextPriorityRequestLow : true,
+                kCIContextWorkingColorSpace : NSNull(),
+                CIContextPriorityRequestLow: true
+            ]
+        #else
+            return [
+                kCIContextUseSoftwareRenderer : false,
+                kCIContextWorkingColorSpace : NSNull()
+            ]
+        #endif
+    }
+    
     public let defaultEgleContext : EAGLContext
     public let defaultCIContext : CIContext
     
     public var egleContext : EAGLContext?
     public var ciContext : CIContext?
     
-    private init() {
-        self.defaultEgleContext = EAGLContext(API: .OpenGLES2)
-        
-        #if (arch(i386) || arch(x86_64)) && os(iOS)
-            self.defaultCIContext = CIContext(options: [
-                kCIContextPriorityRequestLow: true,
-                kCIContextOutputColorSpace: NSNull()
-                ])
-        #else
-            self.defaultCIContext = CIContext(EAGLContext: self.defaultEgleContext, options: [kCIContextUseSoftwareRenderer: false])
-        #endif
+    fileprivate init() {
+        self.defaultEgleContext = EAGLContext(api: .openGLES2)
+        self.defaultCIContext = CIContext(eaglContext: self.defaultEgleContext, options: Context.options)
     }
 }

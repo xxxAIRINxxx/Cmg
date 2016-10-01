@@ -12,57 +12,57 @@ import UIKit
 extension UIImage {
     
     public func fixOrientation() -> UIImage {
-        if self.imageOrientation == .Up { return self }
+        if self.imageOrientation == .up { return self }
         
-        var transform = CGAffineTransformIdentity
+        var transform = CGAffineTransform.identity
         
         switch (self.imageOrientation) {
-        case .Down, .DownMirrored:
-            transform = CGAffineTransformTranslate(transform, self.size.width, self.size.height)
-            transform = CGAffineTransformRotate(transform, CGFloat(M_PI))
-        case .Left, .LeftMirrored:
-            transform = CGAffineTransformTranslate(transform, self.size.width, 0)
-            transform = CGAffineTransformRotate(transform, CGFloat(M_PI_2))
-        case .Right, .RightMirrored:
-            transform = CGAffineTransformTranslate(transform, 0, self.size.height)
-            transform = CGAffineTransformRotate(transform, CGFloat(-M_PI_2))
-        case .Up, .UpMirrored:
+        case .down, .downMirrored:
+            transform = transform.translatedBy(x: self.size.width, y: self.size.height)
+            transform = transform.rotated(by: CGFloat(M_PI))
+        case .left, .leftMirrored:
+            transform = transform.translatedBy(x: self.size.width, y: 0)
+            transform = transform.rotated(by: CGFloat(M_PI_2))
+        case .right, .rightMirrored:
+            transform = transform.translatedBy(x: 0, y: self.size.height)
+            transform = transform.rotated(by: CGFloat(-M_PI_2))
+        case .up, .upMirrored:
             break
         }
         
         switch (self.imageOrientation) {
-        case .UpMirrored, .DownMirrored:
-            transform = CGAffineTransformTranslate(transform, self.size.width, 0)
-            transform = CGAffineTransformScale(transform, -1, 1)
-        case .LeftMirrored, .RightMirrored:
-            transform = CGAffineTransformTranslate(transform, self.size.height, 0)
-            transform = CGAffineTransformScale(transform, -1, 1)
-        case .Up, .Down, .Left, .Right:
+        case .upMirrored, .downMirrored:
+            transform = transform.translatedBy(x: self.size.width, y: 0)
+            transform = transform.scaledBy(x: -1, y: 1)
+        case .leftMirrored, .rightMirrored:
+            transform = transform.translatedBy(x: self.size.height, y: 0)
+            transform = transform.scaledBy(x: -1, y: 1)
+        case .up, .down, .left, .right:
             break
         }
         
         let width = Int(self.size.width)
         let height = Int(self.size.height)
-        let ctx = CGBitmapContextCreate(
-            nil,
-            width,
-            height,
-            CGImageGetBitsPerComponent(self.CGImage),
-            0,
-            CGImageGetColorSpace(self.CGImage),
-            CGImageGetBitmapInfo(self.CGImage).rawValue
+        let ctx = CGContext(
+            data: nil,
+            width: width,
+            height: height,
+            bitsPerComponent: (self.cgImage?.bitsPerComponent)!,
+            bytesPerRow: 0,
+            space: (self.cgImage?.colorSpace!)!,
+            bitmapInfo: (self.cgImage?.bitmapInfo.rawValue)!
         )
         
-        CGContextConcatCTM(ctx, transform)
+        ctx?.concatenate(transform)
         switch (self.imageOrientation) {
-        case .Left, .LeftMirrored, .Right, .RightMirrored:
-            CGContextDrawImage(ctx, CGRectMake(0, 0, self.size.height, self.size.width), self.CGImage)
+        case .left, .leftMirrored, .right, .rightMirrored:
+            ctx?.draw(self.cgImage!, in: CGRect(x: 0, y: 0, width: self.size.height, height: self.size.width))
         default:
-            CGContextDrawImage(ctx, CGRectMake(0, 0, self.size.width, self.size.height), self.CGImage)
+            ctx?.draw(self.cgImage!, in: CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height))
         }
         
-        let cgimg = CGBitmapContextCreateImage(ctx)
-        let image = UIImage(CGImage: cgimg!)
+        let cgimg = ctx?.makeImage()
+        let image = UIImage(cgImage: cgimg!)
         
         return image
     }

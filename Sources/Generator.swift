@@ -51,7 +51,7 @@ InputWidthAvailable, InputSharpnessAvailable {
     public let inputSharpness: ScalarInput
     
     public init(imageSize: CGSize) {
-        self.inputCenter = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, kCIInputCenterKey)
+        self.inputCenter = VectorInput(.position(maximumSize: Vector2(size: imageSize)), self.filter, kCIInputCenterKey)
         self.inputColor0 = ColorInput(filter: self.filter, key: "inputColor0")
         self.inputColor1 = ColorInput(filter: self.filter, key: "inputColor1")
         self.inputWidth = ScalarInput(filter: self.filter, key: kCIInputWidthKey)
@@ -78,7 +78,7 @@ InputMessageAvailable, InputQuietSpaceAvailable {
     public let inputQuietSpace: ScalarInput
     
     public init(message: String) {
-        self.inputMessage = StringInput(filter: self.filter, key: "inputMessage", message, true, NSASCIIStringEncoding)
+        self.inputMessage = StringInput(filter: self.filter, key: "inputMessage", message, true, String.Encoding.ascii.rawValue)
         self.inputQuietSpace = ScalarInput(filter: self.filter, key: "inputQuietSpace")
     }
     
@@ -126,7 +126,7 @@ InputStriationContrastAvailable, InputTimeAvailable {
     public let inputTime: ScalarInput
     
     public init(imageSize: CGSize) {
-        self.inputCenter = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, kCIInputCenterKey)
+        self.inputCenter = VectorInput(.position(maximumSize: Vector2(size: imageSize)), self.filter, kCIInputCenterKey)
         self.inputColor = ColorInput(filter: self.filter, key: kCIInputColorKey)
         self.inputHaloRadius = ScalarInput(filter: self.filter, key: "inputHaloRadius")
         self.inputHaloWidth = ScalarInput(filter: self.filter, key: "inputHaloWidth")
@@ -173,11 +173,11 @@ InputCompactStyleAvailable, InputCorrectionLevelAvailable, InputAlwaysSpecifyCom
     public let inputAlwaysSpecifyCompaction: ScalarInput
     
     public init(inputMessage: String, imageSize: CGSize) {
-        self.inputMessage = StringInput(filter: self.filter, key: "inputMessage", inputMessage, true, NSISOLatin1StringEncoding)
-        self.inputMinWidth = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, "inputMinWidth")
-        self.inputMaxWidth = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, "inputMaxWidth")
-        self.inputMinHeight = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, "inputMinHeight")
-        self.inputMaxHeight = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, "inputMaxHeight")
+        self.inputMessage = StringInput(filter: self.filter, key: "inputMessage", inputMessage, true, String.Encoding.isoLatin1.rawValue)
+        self.inputMinWidth = VectorInput(.position(maximumSize: Vector2(size: imageSize)), self.filter, "inputMinWidth")
+        self.inputMaxWidth = VectorInput(.position(maximumSize: Vector2(size: imageSize)), self.filter, "inputMaxWidth")
+        self.inputMinHeight = VectorInput(.position(maximumSize: Vector2(size: imageSize)), self.filter, "inputMinHeight")
+        self.inputMaxHeight = VectorInput(.position(maximumSize: Vector2(size: imageSize)), self.filter, "inputMaxHeight")
         self.inputDataColumns = ScalarInput(filter: self.filter, key: "inputDataColumns")
         self.inputRows = ScalarInput(filter: self.filter, key: "inputRows", 45.0)
         self.inputPreferredAspectRatio = ScalarInput(filter: self.filter, key: "inputPreferredAspectRatio")
@@ -250,7 +250,7 @@ InputCrossWidthAvailable, InputEpsilonAvailable {
     public let inputEpsilon: ScalarInput
     
     public init(imageSize: CGSize) {
-        self.inputCenter = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, kCIInputCenterKey)
+        self.inputCenter = VectorInput(.position(maximumSize: Vector2(size: imageSize)), self.filter, kCIInputCenterKey)
         self.inputColor = ColorInput(filter: self.filter, key: kCIInputColorKey)
         self.inputRadius = ScalarInput(filter: self.filter, key: kCIInputRadiusKey)
         self.inputCrossScale = ScalarInput(filter: self.filter, key: "inputCrossScale")
@@ -287,7 +287,7 @@ InputWidthAvailable, InputSharpnessAvailable {
     public let inputSharpness: ScalarInput
     
     public init(imageSize: CGSize) {
-        self.inputCenter = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, kCIInputCenterKey)
+        self.inputCenter = VectorInput(.position(maximumSize: Vector2(size: imageSize)), self.filter, kCIInputCenterKey)
         self.inputColor0 = ColorInput(filter: self.filter, key: "inputColor0")
         self.inputColor1 = ColorInput(filter: self.filter, key: "inputColor1")
         self.inputWidth = ScalarInput(filter: self.filter, key: kCIInputWidthKey)
@@ -322,7 +322,7 @@ InputTimeAvailable {
     public let inputTime: ScalarInput
     
     public init(imageSize: CGSize) {
-        self.inputCenter = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, kCIInputCenterKey)
+        self.inputCenter = VectorInput(.position(maximumSize: Vector2(size: imageSize)), self.filter, kCIInputCenterKey)
         self.inputColor = ColorInput(filter: self.filter, key: kCIInputColorKey)
         self.inputSunRadius = ScalarInput(filter: self.filter, key: "inputSunRadius")
         self.inputMaxStriationRadius = ScalarInput(filter: self.filter, key: "inputMaxStriationRadius")

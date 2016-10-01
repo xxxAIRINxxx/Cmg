@@ -11,8 +11,8 @@ import UIKit
 
 final class FilterCell: UICollectionViewCell {
     
-    @IBOutlet private weak var imageView: UIImageView!
-    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet fileprivate weak var imageView: UIImageView!
+    @IBOutlet fileprivate weak var titleLabel: UILabel!
     
     var isSelectedFilter: Bool = false {
         didSet { self.setNeedsDisplay() }
@@ -30,20 +30,20 @@ final class FilterCell: UICollectionViewCell {
         self.isSelectedFilter = false
     }
     
-    func setFilter(filter: PhotoProcessable) {
+    func setFilter(_ filter: PhotoProcessable) {
         self.titleLabel.text = filter.name
         self.imageView.image = filter.thumbnailImage
     }
     
-    override func drawRect(rect: CGRect) {
-        super.drawRect(rect)
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
         
         if self.isSelectedFilter == false { return }
         
         let lineWidth: CGFloat = 2.0
         
-        let bottomLine = UIBezierPath(rect: CGRectMake(0, self.frame.size.height - lineWidth, self.frame.size.width, lineWidth))
-        UIColor.blueColor().setStroke()
+        let bottomLine = UIBezierPath(rect: CGRect(x: 0, y: self.frame.size.height - lineWidth, width: self.frame.size.width, height: lineWidth))
+        UIColor.blue.setStroke()
         bottomLine.lineWidth = lineWidth
         bottomLine.stroke()
     }

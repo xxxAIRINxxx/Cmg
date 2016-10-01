@@ -28,24 +28,26 @@ import CoreImage
 public struct FilterGroup: Processable {
     
     public let name: String
-    private var filters: [Filterable]
+    fileprivate var filters: [Filterable]
     
     public init(name: String? = nil, _ filters : [Filterable] = []) {
         self.name = name ?? "FilterGroup"
         self.filters = filters
     }
     
-    mutating func append(filter: Filterable) {
+    mutating func append(_ filter: Filterable) {
         self.filters.append(filter)
     }
     
     public func sliders() -> [Slider] {
         let sliderRanges: [Slider] = []
-        let values = self.filters.reduce(sliderRanges) {return $0.0 + $0.1.sliders() }
-        return values
+        
+        return self.filters.reduce(sliderRanges) { result, slider in
+            return result + slider.sliders()
+        }
     }
     
-    public func processing(ciImage: CIImage?) -> CIImage? {
+    public func processing(_ ciImage: CIImage?) -> CIImage? {
         return self.filters.reduce(ciImage) { return $0.1.processing($0.0) }
     }
 }

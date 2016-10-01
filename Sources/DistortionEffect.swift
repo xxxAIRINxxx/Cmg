@@ -20,7 +20,7 @@ InputCenterAvailable, InputRadiusAvailable, InputScaleAvailable {
     public let inputScale: ScalarInput
     
     public init(imageSize: CGSize) {
-        self.inputCenter = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, kCIInputCenterKey)
+        self.inputCenter = VectorInput(.position(maximumSize: Vector2(size: imageSize)), self.filter, kCIInputCenterKey)
         self.inputRadius = ScalarInput(filter: self.filter, key: kCIInputRadiusKey)
         self.inputScale = ScalarInput(filter: self.filter, key: kCIInputScaleKey)
     }
@@ -43,7 +43,7 @@ InputCenterAvailable, InputRadiusAvailable {
     public let inputRadius: ScalarInput
     
     public init(imageSize: CGSize) {
-        self.inputCenter = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, kCIInputCenterKey)
+        self.inputCenter = VectorInput(.position(maximumSize: Vector2(size: imageSize)), self.filter, kCIInputCenterKey)
         self.inputRadius = ScalarInput(filter: self.filter, key: kCIInputRadiusKey)
     }
     
@@ -66,7 +66,7 @@ InputCenterAvailable, InputRadiusAvailable, InputAngleAvailable {
     public let inputAngle: ScalarInput
     
     public init(imageSize: CGSize) {
-        self.inputCenter = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, kCIInputCenterKey)
+        self.inputCenter = VectorInput(.position(maximumSize: Vector2(size: imageSize)), self.filter, kCIInputCenterKey)
         self.inputRadius = ScalarInput(filter: self.filter, key: kCIInputRadiusKey)
         self.inputAngle = ScalarInput(filter: self.filter, key: kCIInputAngleKey)
     }
@@ -95,8 +95,8 @@ InputPeriodicityAvailable, InputRotationAvailable, InputZoomAvailable {
     public let inputZoom: ScalarInput
     
     public init(imageSize: CGSize) {
-        self.inputInsetPoint0 = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, "inputInsetPoint0")
-        self.inputInsetPoint1 = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, "inputInsetPoint1")
+        self.inputInsetPoint0 = VectorInput(.position(maximumSize: Vector2(size: imageSize)), self.filter, "inputInsetPoint0")
+        self.inputInsetPoint1 = VectorInput(.position(maximumSize: Vector2(size: imageSize)), self.filter, "inputInsetPoint1")
         self.inputStrands = ScalarInput(filter: self.filter, key: "inputStrands")
         self.inputPeriodicity = ScalarInput(filter: self.filter, key: "inputPeriodicity")
         self.inputRotation = ScalarInput(filter: self.filter, key: "inputRotation")
@@ -125,7 +125,7 @@ InputDisplacementImageAvailable, InputScaleAvailable {
     public let inputScale: ScalarInput
     
     public init(image: UIImage) {
-        self.inputDisplacementImage = ImageInput(image: CIImage(CGImage: image.CGImage!), key: "inputDisplacementImage")
+        self.inputDisplacementImage = ImageInput(image: CIImage(cgImage: image.cgImage!), key: "inputDisplacementImage")
         self.inputScale = ScalarInput(filter: self.filter, key: kCIInputScaleKey)
     }
     
@@ -153,14 +153,14 @@ InputTextureAvailable, InputCenterAvailable, InputScaleAvailable {
     public let inputScale: ScalarInput
     
     public init(image: UIImage, imageSize: CGSize) {
-        self.inputTexture = ImageInput(image: CIImage(CGImage: image.CGImage!), key: "inputTexture")
-        self.inputCenter = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, kCIInputCenterKey)
+        self.inputTexture = ImageInput(image: CIImage(cgImage: image.cgImage!), key: "inputTexture")
+        self.inputCenter = VectorInput(.position(maximumSize: Vector2(size: imageSize)), self.filter, kCIInputCenterKey)
         self.inputScale = ScalarInput(filter: self.filter, key: kCIInputScaleKey)
     }
     
     public init(image: CIImage, imageSize: CGSize) {
         self.inputTexture = ImageInput(image: image, key: "inputTexture")
-        self.inputCenter = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, kCIInputCenterKey)
+        self.inputCenter = VectorInput(.position(maximumSize: Vector2(size: imageSize)), self.filter, kCIInputCenterKey)
         self.inputScale = ScalarInput(filter: self.filter, key: kCIInputScaleKey)
     }
     
@@ -186,8 +186,8 @@ InputRefractionAvailable {
     public let inputRefraction: ScalarInput
     
     public init(imageSize: CGSize) {
-        self.inputPoint0 = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, "inputPoint0")
-        self.inputPoint1 = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, "inputPoint1")
+        self.inputPoint0 = VectorInput(.position(maximumSize: Vector2(size: imageSize)), self.filter, "inputPoint0")
+        self.inputPoint1 = VectorInput(.position(maximumSize: Vector2(size: imageSize)), self.filter, "inputPoint1")
         self.inputRadius = ScalarInput(filter: self.filter, key: kCIInputRadiusKey)
         self.inputRefraction = ScalarInput(filter: self.filter, key: "inputRefraction")
     }
@@ -211,7 +211,7 @@ InputCenterAvailable, InputRadiusAvailable {
     public let inputRadius: ScalarInput
     
     public init(imageSize: CGSize) {
-        self.inputCenter = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, kCIInputCenterKey)
+        self.inputCenter = VectorInput(.position(maximumSize: Vector2(size: imageSize)), self.filter, kCIInputCenterKey)
         self.inputRadius = ScalarInput(filter: self.filter, key: kCIInputRadiusKey)
     }
     
@@ -233,7 +233,7 @@ InputCenterAvailable, InputRotationAvailable, InputRadiusAvailable {
     public let inputRadius: ScalarInput
     
     public init(imageSize: CGSize) {
-        self.inputCenter = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, kCIInputCenterKey)
+        self.inputCenter = VectorInput(.position(maximumSize: Vector2(size: imageSize)), self.filter, kCIInputCenterKey)
         self.inputRotation = ScalarInput(filter: self.filter, key: "inputRotation")
         self.inputRadius = ScalarInput(filter: self.filter, key: kCIInputRadiusKey)
     }
@@ -257,7 +257,7 @@ InputCenterAvailable, InputRadiusAvailable, InputScaleAvailable {
     public let inputScale: ScalarInput
     
     public init(imageSize: CGSize) {
-        self.inputCenter = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, kCIInputCenterKey)
+        self.inputCenter = VectorInput(.position(maximumSize: Vector2(size: imageSize)), self.filter, kCIInputCenterKey)
         self.inputRadius = ScalarInput(filter: self.filter, key: kCIInputRadiusKey)
         self.inputScale = ScalarInput(filter: self.filter, key: kCIInputScaleKey)
     }
@@ -282,7 +282,7 @@ InputVectorSizeAvailable, InputCropAmountAvailable, InputCenterStretchAmountAvai
     public let inputCenterStretchAmount: ScalarInput
     
     public init(imageSize: CGSize) {
-        self.inputVectorSize = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, "inputSize")
+        self.inputVectorSize = VectorInput(.position(maximumSize: Vector2(size: imageSize)), self.filter, "inputSize")
         self.inputCropAmount = ScalarInput(filter: self.filter, key: "inputCropAmount")
         self.inputCenterStretchAmount = ScalarInput(filter: self.filter, key: "inputCenterStretchAmount")
     }
@@ -309,7 +309,7 @@ InputRefractionAvailable {
     public let inputRefraction: ScalarInput
     
     public init(imageSize: CGSize) {
-        self.inputCenter = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, kCIInputCenterKey)
+        self.inputCenter = VectorInput(.position(maximumSize: Vector2(size: imageSize)), self.filter, kCIInputCenterKey)
         self.inputRadius = ScalarInput(filter: self.filter, key: kCIInputRadiusKey)
         self.inputWidth = ScalarInput(filter: self.filter, key: kCIInputWidthKey)
         self.inputRefraction = ScalarInput(filter: self.filter, key: "inputRefraction")
@@ -335,7 +335,7 @@ InputCenterAvailable, InputRadiusAvailable, InputAngleAvailable {
     public let inputAngle: ScalarInput
     
     public init(imageSize: CGSize) {
-        self.inputCenter = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, kCIInputCenterKey)
+        self.inputCenter = VectorInput(.position(maximumSize: Vector2(size: imageSize)), self.filter, kCIInputCenterKey)
         self.inputRadius = ScalarInput(filter: self.filter, key: kCIInputRadiusKey)
         self.inputAngle = ScalarInput(filter: self.filter, key: kCIInputAngleKey)
     }
@@ -359,7 +359,7 @@ InputCenterAvailable, InputRadiusAvailable, InputAngleAvailable {
     public let inputAngle: ScalarInput
     
     public init(imageSize: CGSize) {
-        self.inputCenter = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, kCIInputCenterKey)
+        self.inputCenter = VectorInput(.position(maximumSize: Vector2(size: imageSize)), self.filter, kCIInputCenterKey)
         self.inputRadius = ScalarInput(filter: self.filter, key: kCIInputRadiusKey)
         self.inputAngle = ScalarInput(filter: self.filter, key: kCIInputAngleKey)
     }

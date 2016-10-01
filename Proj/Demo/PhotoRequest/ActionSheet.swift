@@ -8,7 +8,7 @@
 
 import UIKit
 
-public typealias ActionSheetCompletion = (Void -> Void)
+public typealias ActionSheetCompletion = ((Void) -> Void)
 
 private struct ActionInfo {
     
@@ -28,8 +28,8 @@ public final class ActionSheet {
     let title : String
     let message : String
     
-    private var actionInfo : [ActionInfo] = []
-    private var cancelInfo : ActionInfo?
+    fileprivate var actionInfo : [ActionInfo] = []
+    fileprivate var cancelInfo : ActionInfo?
     
     // MARK: - Initializer
     
@@ -40,25 +40,25 @@ public final class ActionSheet {
     
     // MARK: - Instance Functions
     
-    public func setCancelAction(title: String, completion: ActionSheetCompletion? = nil) -> ActionSheet {
-        self.cancelInfo = ActionInfo(.Cancel, title, completion)
+    public func setCancelAction(_ title: String, completion: ActionSheetCompletion? = nil) -> ActionSheet {
+        self.cancelInfo = ActionInfo(.cancel, title, completion)
         return self
     }
     
-    public func addAction(title: String, completion: ActionSheetCompletion?) -> ActionSheet {
-        let a = ActionInfo(.Default, title, completion)
+    public func addAction(_ title: String, completion: ActionSheetCompletion?) -> ActionSheet {
+        let a = ActionInfo(.default, title, completion)
         self.actionInfo.append(a)
         return self
     }
     
-    public func addDestructiveAction(title: String, completion: ActionSheetCompletion?) -> ActionSheet {
-        let a = ActionInfo(.Destructive, title, completion)
+    public func addDestructiveAction(_ title: String, completion: ActionSheetCompletion?) -> ActionSheet {
+        let a = ActionInfo(.destructive, title, completion)
         self.actionInfo.append(a)
         return self
     }
     
-    public func show(owner: UIViewController) {
-        let alertController = UIAlertController(title: self.title, message: self.message, preferredStyle: .ActionSheet)
+    public func show(_ owner: UIViewController) {
+        let alertController = UIAlertController(title: self.title, message: self.message, preferredStyle: .actionSheet)
         
         if let _cancelInfo = self.cancelInfo {
             self.actionInfo.append(_cancelInfo)
@@ -73,10 +73,10 @@ public final class ActionSheet {
         }
         
         if self.actionInfo.count == 0 {
-            let action = UIAlertAction(title: "Cancel", style: .Default) { _ in }
+            let action = UIAlertAction(title: "Cancel", style: .default) { _ in }
             alertController.addAction(action)
         }
         
-        owner.presentViewController(alertController, animated: true, completion: nil)
+        owner.present(alertController, animated: true, completion: nil)
     }
 }

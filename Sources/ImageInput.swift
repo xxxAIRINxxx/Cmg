@@ -16,7 +16,7 @@ public final class ImageInput: FilterInputable {
     public let range: Range
     public let image: CIImage
     
-    public private(set) var alpha: CGFloat = 1.0
+    public fileprivate(set) var alpha: CGFloat = 1.0
     
     public init(image: CIImage, key: String) {
         self.key = key
@@ -31,7 +31,7 @@ public final class ImageInput: FilterInputable {
         return value
     }
     
-    public func setInput(filter: CIFilter) {
+    public func setInput(_ filter: CIFilter) {
         var _image = self.image
         
         if self.alpha < 1.0 {
@@ -44,7 +44,7 @@ public final class ImageInput: FilterInputable {
         filter.setValue(_image, forKey: self.key)
     }
     
-    public func updateAlpha(value: CGFloat) {
+    public func updateAlpha(_ value: CGFloat) {
         self.alpha = CGFloat(self.range.convertValue(Float(value)))
     }
     

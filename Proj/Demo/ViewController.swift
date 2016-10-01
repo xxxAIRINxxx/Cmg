@@ -15,9 +15,9 @@ final class ViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var sliderTableView: SliderTableView!
     
-    private weak var selectedFilter: PhotoProcessable?
+    fileprivate weak var selectedFilter: PhotoProcessable?
     
-    private var filters: [PhotoProcessable] = FilterGenerator.generate()
+    fileprivate var filters: [PhotoProcessable] = FilterGenerator.generate()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,19 +25,19 @@ final class ViewController: UIViewController {
         self.setup()
     }
     
-    private func setup() {
+    fileprivate func setup() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Photo",
-                                                                 style: .Plain,
+                                                                 style: .plain,
                                                                  target: self,
                                                                  action: #selector(ViewController.requestPhoto))
         
         self.imageView.image = FilterGenerator.originalImage
         
-        self.collectionView.registerNib(UINib(nibName: "FilterCell", bundle: nil), forCellWithReuseIdentifier: "FilterCell")
+        self.collectionView.register(UINib(nibName: "FilterCell", bundle: nil), forCellWithReuseIdentifier: "FilterCell")
         
         let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.scrollDirection = .Horizontal
-        flowLayout.headerReferenceSize = CGSizeZero
+        flowLayout.scrollDirection = .horizontal
+        flowLayout.headerReferenceSize = CGSize.zero
         flowLayout.sectionInset = UIEdgeInsetsMake(10.0, 10.0, 0.0, 10.0)
         flowLayout.itemSize = CGSize(width: 80, height: 110)
         flowLayout.minimumLineSpacing = 10
@@ -50,20 +50,20 @@ final class ViewController: UIViewController {
         }
     }
     
-    @objc private func requestPhoto() {
+    @objc fileprivate func requestPhoto() {
         PhotoRequester.showActionSheet(self) { [unowned self] result in
             switch result {
-            case .Success(let image):
+            case .success(let image):
                 let _image = image.fixOrientation()
-                FilterGenerator.originalImage = _image.cmg_resizeAtAspectFit(Image.Original.size)!
-                FilterGenerator.thumbnailImage = _image.cmg_resizeAtAspectFit(Image.Thumbnail.size)!
+                FilterGenerator.originalImage = _image.cmg_resizeAtAspectFit(Image.original.size)!
+                FilterGenerator.thumbnailImage = _image.cmg_resizeAtAspectFit(Image.thumbnail.size)!
                 self.imageView.image = FilterGenerator.originalImage
                 self.filters = FilterGenerator.generate()
                 self.selectedFilter = nil
                 self.collectionView.reloadData()
-            case .Faild:
+            case .faild:
                 break
-            case .Cancel:
+            case .cancel:
                 break
             }
         }
@@ -74,16 +74,16 @@ final class ViewController: UIViewController {
 
 extension ViewController {
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.filters.count
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        return collectionView.dequeueReusableCellWithReuseIdentifier("FilterCell", forIndexPath: indexPath)
+    func collectionView(_ collectionView: UICollectionView, cellForItemAtIndexPath indexPath: IndexPath) -> UICollectionViewCell {
+        return collectionView.dequeueReusableCell(withReuseIdentifier: "FilterCell", for: indexPath)
     }
     
-    func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
-        let filter = self.filters[indexPath.row]
+    func collectionView(_ collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: IndexPath) {
+        let filter = self.filters[(indexPath as NSIndexPath).row]
         
         switch cell {
         case let _cell as FilterCell:
@@ -106,8 +106,8 @@ extension ViewController {
 
 extension ViewController {
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let filter = self.filters[indexPath.row]
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: IndexPath) {
+        let filter = self.filters[(indexPath as NSIndexPath).row]
         
         if (self.selectedFilter.flatMap() { $0 === filter }) == true { return }
         
@@ -117,6 +117,6 @@ extension ViewController {
         
         self.imageView.image = filter.processing(FilterGenerator.originalImage)
         
-        collectionView.reloadItemsAtIndexPaths(collectionView.indexPathsForVisibleItems())
+        collectionView.reloadItems(at: collectionView.indexPathsForVisibleItems)
     }
 }

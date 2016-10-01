@@ -8,6 +8,9 @@
       location = "group:../Cmg.podspec">
    </FileRef>
    <FileRef
+      location = "group:../LICENSE">
+   </FileRef>
+   <FileRef
       location = "group:Cmg.xcodeproj">
    </FileRef>
    <FileRef

@@ -76,7 +76,7 @@ public struct Vector4: Vectorable {
 
 public struct VectorAny: Vectorable {
     public let count: Int
-    public private(set) var values: [CGFloat] = []
+    public fileprivate(set) var values: [CGFloat] = []
     
     public init(count: Int, values: [CGFloat]) {
         self.count = count

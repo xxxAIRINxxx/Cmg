@@ -19,7 +19,7 @@ InputExtentAvailable {
     public let inputExtent: VectorInput
     
     public init(imageSize: CGSize) {
-        self.inputExtent = VectorInput(.Extent(extent: Vector4(size: imageSize)), self.filter, kCIInputExtentKey)
+        self.inputExtent = VectorInput(.extent(extent: Vector4(size: imageSize)), self.filter, kCIInputExtentKey)
     }
     
     public func inputs() -> [FilterInputable] {
@@ -39,7 +39,7 @@ InputExtentAvailable, InputScaleAvailable, InputCountAvailable {
     public let inputScale: ScalarInput
     
     public init(imageSize: CGSize) {
-        self.inputExtent = VectorInput(.Extent(extent: Vector4(size: imageSize)), self.filter, kCIInputExtentKey)
+        self.inputExtent = VectorInput(.extent(extent: Vector4(size: imageSize)), self.filter, kCIInputExtentKey)
         self.inputCount = ScalarInput(filter: self.filter, key: "inputCount")
         self.inputScale = ScalarInput(filter: self.filter, key: kCIInputScaleKey)
     }
@@ -62,7 +62,7 @@ InputExtentAvailable {
     public let inputExtent: VectorInput
     
     public init(imageSize: CGSize) {
-        self.inputExtent = VectorInput(.Extent(extent: Vector4(size: imageSize)), self.filter, kCIInputExtentKey)
+        self.inputExtent = VectorInput(.extent(extent: Vector4(size: imageSize)), self.filter, kCIInputExtentKey)
     }
     
     public func inputs() -> [FilterInputable] {
@@ -81,7 +81,7 @@ InputExtentAvailable {
     public let inputExtent: VectorInput
     
     public init(imageSize: CGSize) {
-        self.inputExtent = VectorInput(.Extent(extent: Vector4(size: imageSize)), self.filter, kCIInputExtentKey)
+        self.inputExtent = VectorInput(.extent(extent: Vector4(size: imageSize)), self.filter, kCIInputExtentKey)
     }
     
     public func inputs() -> [FilterInputable] {
@@ -125,7 +125,7 @@ InputExtentAvailable {
     public let inputExtent: VectorInput
     
     public init(imageSize: CGSize) {
-        self.inputExtent = VectorInput(.Extent(extent: Vector4(size: imageSize)), self.filter, kCIInputExtentKey)
+        self.inputExtent = VectorInput(.extent(extent: Vector4(size: imageSize)), self.filter, kCIInputExtentKey)
     }
     
     public func inputs() -> [FilterInputable] {
@@ -144,7 +144,7 @@ InputExtentAvailable {
     public let inputExtent: VectorInput
     
     public init(imageSize: CGSize) {
-        self.inputExtent = VectorInput(.Extent(extent: Vector4(size: imageSize)), self.filter, kCIInputExtentKey)
+        self.inputExtent = VectorInput(.extent(extent: Vector4(size: imageSize)), self.filter, kCIInputExtentKey)
     }
     
     public func inputs() -> [FilterInputable] {
@@ -163,7 +163,7 @@ InputExtentAvailable {
     public let inputExtent: VectorInput
     
     public init(imageSize: CGSize) {
-        self.inputExtent = VectorInput(.Extent(extent: Vector4(size: imageSize)), self.filter, kCIInputExtentKey)
+        self.inputExtent = VectorInput(.extent(extent: Vector4(size: imageSize)), self.filter, kCIInputExtentKey)
     }
     
     public func inputs() -> [FilterInputable] {
@@ -182,7 +182,7 @@ InputExtentAvailable {
     public let inputExtent: VectorInput
     
     public init(imageSize: CGSize) {
-        self.inputExtent = VectorInput(.Extent(extent: Vector4(size: imageSize)), self.filter, kCIInputExtentKey)
+        self.inputExtent = VectorInput(.extent(extent: Vector4(size: imageSize)), self.filter, kCIInputExtentKey)
     }
     
     public func inputs() -> [FilterInputable] {

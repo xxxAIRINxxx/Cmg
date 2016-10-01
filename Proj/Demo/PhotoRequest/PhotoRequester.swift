@@ -10,25 +10,25 @@ import Foundation
 import UIKit
 
 public enum PhotoResquestResult {
-    case Success(image: UIImage)
-    case Faild
-    case Cancel
+    case success(image: UIImage)
+    case faild
+    case cancel
     
     var image: UIImage? {
-        if case .Success(let image) = self { return image }
+        if case .success(let image) = self { return image }
         return nil
     }
 }
 
-public typealias PhotoResquestCompletion = (PhotoResquestResult -> Void)
+public typealias PhotoResquestCompletion = ((PhotoResquestResult) -> Void)
 
 public final class PhotoRequester: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    private static let shared : PhotoRequester = PhotoRequester()
+    fileprivate static let shared : PhotoRequester = PhotoRequester()
     
-    private var completionHandler : (PhotoResquestCompletion)?
+    fileprivate var completionHandler : (PhotoResquestCompletion)?
     
-    public static func showActionSheet(parentViewController: UIViewController, completion: PhotoResquestCompletion?) {
+    public static func showActionSheet(_ parentViewController: UIViewController, completion: PhotoResquestCompletion?) {
         ActionSheet(title: "Select SourceType", message: "")
             .addAction("PhotoLibrary") {
                 PhotoRequester.requestPhotoLibrary(parentViewController, completion: completion)
@@ -43,28 +43,28 @@ public final class PhotoRequester: NSObject, UIImagePickerControllerDelegate, UI
             .show(parentViewController)
     }
     
-    public static func requestPhotoLibrary(parentViewController: UIViewController, completion: PhotoResquestCompletion?) {
-        self.shared.requestPhoto(parentViewController, .PhotoLibrary, completion)
+    public static func requestPhotoLibrary(_ parentViewController: UIViewController, completion: PhotoResquestCompletion?) {
+        self.shared.requestPhoto(parentViewController, .photoLibrary, completion)
     }
     
-    public static func requestPhotoFromCamera(parentViewController: UIViewController, completion: PhotoResquestCompletion?) {
-        self.shared.requestPhoto(parentViewController, .Camera, completion)
+    public static func requestPhotoFromCamera(_ parentViewController: UIViewController, completion: PhotoResquestCompletion?) {
+        self.shared.requestPhoto(parentViewController, .camera, completion)
     }
     
-    public static func requestPhotoFromSavedPhotosAlbum(parentViewController: UIViewController, completion: PhotoResquestCompletion?) {
-        self.shared.requestPhoto(parentViewController, .SavedPhotosAlbum, completion)
+    public static func requestPhotoFromSavedPhotosAlbum(_ parentViewController: UIViewController, completion: PhotoResquestCompletion?) {
+        self.shared.requestPhoto(parentViewController, .savedPhotosAlbum, completion)
     }
     
-    private func requestPhoto(parentViewController: UIViewController, _ sourceType: UIImagePickerControllerSourceType , _ completion: PhotoResquestCompletion?) {
+    fileprivate func requestPhoto(_ parentViewController: UIViewController, _ sourceType: UIImagePickerControllerSourceType , _ completion: PhotoResquestCompletion?) {
         
         if !UIImagePickerController.isSourceTypeAvailable(sourceType) {
-            completion?(PhotoResquestResult.Faild)
+            completion?(PhotoResquestResult.faild)
             return
         }
         
         let resultBlock: AuthorizedCompletion = { [unowned self] result in
             switch result {
-            case .Success:
+            case .success:
                 let imagePickerController : UIImagePickerController = UIImagePickerController()
                 imagePickerController.sourceType = sourceType
                 imagePickerController.allowsEditing = false
@@ -72,16 +72,16 @@ public final class PhotoRequester: NSObject, UIImagePickerControllerDelegate, UI
                 
                 self.completionHandler = completion
                 
-                parentViewController.presentViewController(imagePickerController, animated: true, completion: nil)
-            case .Error(_):
-                completion?(PhotoResquestResult.Faild)
+                parentViewController.present(imagePickerController, animated: true, completion: nil)
+            case .error(_):
+                completion?(PhotoResquestResult.faild)
             }
         }
         
         switch sourceType {
-        case .Camera:
+        case .camera:
             Authorization.camera(resultBlock)
-        case .PhotoLibrary, .SavedPhotosAlbum:
+        case .photoLibrary, .savedPhotosAlbum:
             Authorization.photo(resultBlock)
         }
     }
@@ -91,17 +91,17 @@ public final class PhotoRequester: NSObject, UIImagePickerControllerDelegate, UI
 
 extension PhotoRequester {
     
-    public func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
-        picker.dismissViewControllerAnimated(true) { [unowned self] in
-            self.completionHandler?(PhotoResquestResult.Success(image: image))
+        picker.dismiss(animated: true) { [unowned self] in
+            self.completionHandler?(PhotoResquestResult.success(image: image))
             self.completionHandler = nil
         }
     }
     
-    public func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        picker.dismissViewControllerAnimated(true) { [unowned self] in
-            self.completionHandler?(PhotoResquestResult.Cancel)
+    public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true) { [unowned self] in
+            self.completionHandler?(PhotoResquestResult.cancel)
             self.completionHandler = nil
         }
     }

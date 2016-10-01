@@ -15,13 +15,13 @@ extension UIImage {
     // MARK: - Blur
     
     @available(iOS 9.0, *)
-    public func cmg_boxBlur(radius: Float = 10) -> UIImage? {
+    public func cmg_boxBlur(_ radius: Float = 10) -> UIImage? {
         var filter = BoxBlur()
         filter.radius = radius
         return filter.processing(self)
     }
     
-    public func cmg_gaussianBlur(radius: Float = 10) -> UIImage? {
+    public func cmg_gaussianBlur(_ radius: Float = 10) -> UIImage? {
         var filter = GaussianBlur()
         filter.radius = radius
         return filter.processing(self)
@@ -34,16 +34,16 @@ extension UIImage {
     
     // Geometry Adjustment
     
-    public func cmg_resize(newSize: CGSize) -> UIImage? {
+    public func cmg_resize(_ newSize: CGSize) -> UIImage? {
         let scale = CGPoint(x: newSize.width / self.size.width, y: newSize.height / self.size.height)
         let bounds = CGRect(origin: CGPoint.zero, size: newSize)
         
         let filter = AffineTransform()
         filter.setScale(scale.x, scale.y)
-        return filter.processingIntoCIImage(self)?.imageByCroppingToRect(bounds).generateUIImage(self)
+        return filter.processingIntoCIImage(self)?.cropping(to: bounds).generateUIImage(self)
     }
     
-    public func cmg_resizeAtAspectFit(newSize: CGSize) -> UIImage? {
+    public func cmg_resizeAtAspectFit(_ newSize: CGSize) -> UIImage? {
         var destWidth: CGFloat = newSize.width
         var destHeight: CGFloat = newSize.height
         
@@ -64,7 +64,7 @@ extension UIImage {
         return self.cmg_resize(CGSize(width: destWidth, height: destHeight))
     }
     
-    public func cmg_resizeAtAspectFill(newSize: CGSize) -> UIImage? {
+    public func cmg_resizeAtAspectFill(_ newSize: CGSize) -> UIImage? {
         var destWidth: CGFloat = newSize.width
         var destHeight: CGFloat = newSize.height
         let widthRatio = newSize.width / self.size.width

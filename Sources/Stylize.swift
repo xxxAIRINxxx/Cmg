@@ -19,8 +19,8 @@ InputBackgroundImageAvailable, InputMaskImageAvailable {
     public let inputMaskImage: ImageInput
     
     public init(backgroundImage: UIImage, maskImage: UIImage) {
-        self.inputBackgroundImage = ImageInput(image: CIImage(CGImage: backgroundImage.CGImage!), key: kCIInputBackgroundImageKey)
-        self.inputMaskImage = ImageInput(image: CIImage(CGImage: maskImage.CGImage!), key: kCIInputMaskImageKey)
+        self.inputBackgroundImage = ImageInput(image: CIImage(cgImage: backgroundImage.cgImage!), key: kCIInputBackgroundImageKey)
+        self.inputMaskImage = ImageInput(image: CIImage(cgImage: maskImage.cgImage!), key: kCIInputMaskImageKey)
     }
     
     public init(backgroundImage: CIImage, maskImage: CIImage) {
@@ -45,8 +45,8 @@ InputBackgroundImageAvailable, InputMaskImageAvailable {
     public let inputMaskImage: ImageInput
     
     public init(backgroundImage: UIImage, maskImage: UIImage) {
-        self.inputBackgroundImage = ImageInput(image: CIImage(CGImage: backgroundImage.CGImage!), key: kCIInputBackgroundImageKey)
-        self.inputMaskImage = ImageInput(image: CIImage(CGImage: maskImage.CGImage!), key: kCIInputMaskImageKey)
+        self.inputBackgroundImage = ImageInput(image: CIImage(cgImage: backgroundImage.cgImage!), key: kCIInputBackgroundImageKey)
+        self.inputMaskImage = ImageInput(image: CIImage(cgImage: maskImage.cgImage!), key: kCIInputMaskImageKey)
     }
     
     public init(backgroundImage: CIImage, maskImage: CIImage) {
@@ -100,7 +100,7 @@ InputWeightsAvailable, InputBiasAvailable {
     public let inputBias: ScalarInput
     
     public init() {
-        self.inputWeights = VectorInput(.Other(count: 9), self.filter, "inputWeights")
+        self.inputWeights = VectorInput(.other(count: 9), self.filter, "inputWeights")
         self.inputBias = ScalarInput(filter: self.filter, key: "inputBias")
     }
     
@@ -121,7 +121,7 @@ InputWeightsAvailable, InputBiasAvailable {
     public let inputBias: ScalarInput
     
     public init() {
-        self.inputWeights = VectorInput(.Other(count: 25), self.filter, "inputWeights")
+        self.inputWeights = VectorInput(.other(count: 25), self.filter, "inputWeights")
         self.inputBias = ScalarInput(filter: self.filter, key: "inputBias")
     }
     
@@ -143,7 +143,7 @@ InputWeightsAvailable, InputBiasAvailable {
     public let inputBias: ScalarInput
     
     public init() {
-        self.inputWeights = VectorInput(.Other(count: 49), self.filter, "inputWeights")
+        self.inputWeights = VectorInput(.other(count: 49), self.filter, "inputWeights")
         self.inputBias = ScalarInput(filter: self.filter, key: "inputBias")
     }
     
@@ -164,7 +164,7 @@ InputWeightsAvailable, InputBiasAvailable {
     public let inputBias: ScalarInput
     
     public init() {
-        self.inputWeights = VectorInput(.Other(count: 9), self.filter, "inputWeights")
+        self.inputWeights = VectorInput(.other(count: 9), self.filter, "inputWeights")
         self.inputBias = ScalarInput(filter: self.filter, key: "inputBias")
     }
     
@@ -185,7 +185,7 @@ InputWeightsAvailable, InputBiasAvailable {
     public let inputBias: ScalarInput
     
     public init() {
-        self.inputWeights = VectorInput(.Other(count: 9), self.filter, "inputWeights")
+        self.inputWeights = VectorInput(.other(count: 9), self.filter, "inputWeights")
         self.inputBias = ScalarInput(filter: self.filter, key: "inputBias")
     }
     
@@ -208,7 +208,7 @@ InputRadiusAvailable, InputCenterAvailable {
     
     public init(imageSize: CGSize) {
         self.inputRadius = ScalarInput(filter: self.filter, key: kCIInputRadiusKey)
-        self.inputCenter = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, kCIInputCenterKey)
+        self.inputCenter = VectorInput(.position(maximumSize: Vector2(size: imageSize)), self.filter, kCIInputCenterKey)
     }
     
     public func inputs() -> [FilterInputable] {
@@ -234,8 +234,8 @@ InputUnsharpMaskRadiusAvailable, InputUnsharpMaskIntensityAvailable, InputRadius
     public let inputRadius: ScalarInput
     
     public init(imageSize: CGSize) {
-        self.inputPoint0 = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, "inputPoint0")
-        self.inputPoint1 = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, "inputPoint1")
+        self.inputPoint0 = VectorInput(.position(maximumSize: Vector2(size: imageSize)), self.filter, "inputPoint0")
+        self.inputPoint1 = VectorInput(.position(maximumSize: Vector2(size: imageSize)), self.filter, "inputPoint1")
         self.inputSaturation = ScalarInput(filter: self.filter, key: kCIInputSaturationKey)
         self.inputUnsharpMaskRadius = ScalarInput(filter: self.filter, key: "inputUnsharpMaskRadius")
         self.inputUnsharpMaskIntensity = ScalarInput(filter: self.filter, key: "inputUnsharpMaskIntensity")
@@ -342,7 +342,7 @@ InputCenterAvailable, InputScaleAvailable {
     public let inputScale: ScalarInput
     
     public init(imageSize: CGSize) {
-        self.inputCenter = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, kCIInputCenterKey)
+        self.inputCenter = VectorInput(.position(maximumSize: Vector2(size: imageSize)), self.filter, kCIInputCenterKey)
         self.inputScale = ScalarInput(filter: self.filter, key: kCIInputScaleKey)
     }
     
@@ -417,7 +417,7 @@ InputCenterAvailable, InputScaleAvailable {
     public let inputScale: ScalarInput
     
     public init(imageSize: CGSize) {
-        self.inputCenter = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, kCIInputCenterKey)
+        self.inputCenter = VectorInput(.position(maximumSize: Vector2(size: imageSize)), self.filter, kCIInputCenterKey)
         self.inputScale = ScalarInput(filter: self.filter, key: kCIInputScaleKey)
     }
     
@@ -439,7 +439,7 @@ InputCenterAvailable, InputRadiusAvailable {
     public let inputRadius: ScalarInput
     
     public init(imageSize: CGSize) {
-        self.inputCenter = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, kCIInputCenterKey)
+        self.inputCenter = VectorInput(.position(maximumSize: Vector2(size: imageSize)), self.filter, kCIInputCenterKey)
         self.inputRadius = ScalarInput(filter: self.filter, key: kCIInputRadiusKey)
     }
     
@@ -461,7 +461,7 @@ InputShadingImageAvailable, InputScaleAvailable {
     public let inputScale: ScalarInput
     
     public init(uiImage: UIImage) {
-        self.inputShadingImage = ImageInput(image: CIImage(CGImage: uiImage.CGImage!), key: kCIInputShadingImageKey)
+        self.inputShadingImage = ImageInput(image: CIImage(cgImage: uiImage.cgImage!), key: kCIInputShadingImageKey)
         self.inputScale = ScalarInput(filter: self.filter, key: kCIInputScaleKey)
     }
     

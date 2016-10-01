@@ -22,7 +22,7 @@ InputColor1Available {
     public let inputRadius: ScalarInput
     
     public init(imageSize: CGSize) {
-        self.inputCenter = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, kCIInputCenterKey)
+        self.inputCenter = VectorInput(.position(maximumSize: Vector2(size: imageSize)), self.filter, kCIInputCenterKey)
         self.inputRadius = ScalarInput(filter: self.filter, key: kCIInputRadiusKey)
         self.inputColor0 = ColorInput(filter: self.filter, key: "inputColor0")
         self.inputColor1 = ColorInput(filter: self.filter, key: "inputColor1")
@@ -50,8 +50,8 @@ InputColor1Available {
     public let inputColor1: ColorInput
     
     public init(imageSize: CGSize) {
-        self.inputPoint0 = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, "inputPoint0")
-        self.inputPoint1 = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, "inputPoint1")
+        self.inputPoint0 = VectorInput(.position(maximumSize: Vector2(size: imageSize)), self.filter, "inputPoint0")
+        self.inputPoint1 = VectorInput(.position(maximumSize: Vector2(size: imageSize)), self.filter, "inputPoint1")
         self.inputColor0 = ColorInput(filter: self.filter, key: "inputColor0")
         self.inputColor1 = ColorInput(filter: self.filter, key: "inputColor1")
     }
@@ -79,7 +79,7 @@ InputColor0Available, InputColor1Available {
     public let inputRadius1: ScalarInput
     
     public init(imageSize: CGSize) {
-        self.inputCenter = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, kCIInputCenterKey)
+        self.inputCenter = VectorInput(.position(maximumSize: Vector2(size: imageSize)), self.filter, kCIInputCenterKey)
         self.inputColor0 = ColorInput(filter: self.filter, key: "inputColor0")
         self.inputColor1 = ColorInput(filter: self.filter, key: "inputColor1")
         self.inputRadius0 = ScalarInput(filter: self.filter, key: "inputRadius0")
@@ -109,8 +109,8 @@ InputColor1Available {
     public let inputColor1: ColorInput
     
     public init(imageSize: CGSize) {
-        self.inputPoint0 = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, "inputPoint0")
-        self.inputPoint1 = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, "inputPoint1")
+        self.inputPoint0 = VectorInput(.position(maximumSize: Vector2(size: imageSize)), self.filter, "inputPoint0")
+        self.inputPoint1 = VectorInput(.position(maximumSize: Vector2(size: imageSize)), self.filter, "inputPoint1")
         self.inputColor0 = ColorInput(filter: self.filter, key: "inputColor0")
         self.inputColor1 = ColorInput(filter: self.filter, key: "inputColor1")
     }

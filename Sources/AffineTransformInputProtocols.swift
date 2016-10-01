@@ -22,23 +22,23 @@ extension InputAffineTransformAvailable {
         set { inputTransform.value = newValue }
     }
     
-    public func setTranslate(x: CGFloat, _ y: CGFloat) {
-        inputTransform.value = CGAffineTransformTranslate(inputTransform.value, x, y)
+    public func setTranslate(_ x: CGFloat, _ y: CGFloat) {
+        inputTransform.value = inputTransform.value.translatedBy(x: x, y: y)
     }
     
-    public func setScale(x: CGFloat, _ y: CGFloat) {
-        inputTransform.value = CGAffineTransformScale(inputTransform.value, x, y)
+    public func setScale(_ x: CGFloat, _ y: CGFloat) {
+        inputTransform.value = inputTransform.value.scaledBy(x: x, y: y)
     }
     
-    public func setRotate(angle: CGFloat) {
-        inputTransform.value = CGAffineTransformRotate(inputTransform.value, angle)
+    public func setRotate(_ angle: CGFloat) {
+        inputTransform.value = inputTransform.value.rotated(by: angle)
     }
     
     public func invert() {
-        inputTransform.value = CGAffineTransformInvert(inputTransform.value)
+        inputTransform.value = inputTransform.value.inverted()
     }
     
-    public func concat(transform: CGAffineTransform) {
-        inputTransform.value = CGAffineTransformConcat(inputTransform.value, transform)
+    public func concat(_ transform: CGAffineTransform) {
+        inputTransform.value = inputTransform.value.concatenating(transform)
     }
 }

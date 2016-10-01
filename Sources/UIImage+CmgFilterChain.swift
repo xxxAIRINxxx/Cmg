@@ -28,7 +28,7 @@ import CoreImage
 
 extension Filterable {
     
-    public func configuration(@noescape configurationBlock: (Self -> Void)) -> Self {
+    public func configuration(_ configurationBlock: ((Self) -> Void)) -> Self {
         configurationBlock(self)
         return self
     }
@@ -36,7 +36,7 @@ extension Filterable {
 
 extension UIImage {
     
-    public func cmg_chain(filters: [Filterable]) -> UIImage? {
+    public func cmg_chain(_ filters: [Filterable]) -> UIImage? {
         return filters.reduce(self) { return $0.1.processing($0.0) ?? $0.0 }
     }
 }

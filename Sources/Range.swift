@@ -22,13 +22,13 @@ public struct Range {
         self.initialValue = initialValue
     }
     
-    public func convertValue(currentValue: Float) -> Float {
+    public func convertValue(_ currentValue: Float) -> Float {
         if currentValue > self.maximumValue { return self.maximumValue }
         if currentValue < self.minimumValue { return self.minimumValue }
         return currentValue
     }
     
-    static func generateFromFilterAttributes(key: String, filter: CIFilter) -> Range {
+    static func generateFromFilterAttributes(_ key: String, filter: CIFilter) -> Range {
         let attributes = filter.attributes[key] as? [String : AnyObject]
         
         let min = attributes?["CIAttributeSliderMin"] as? NSNumber ?? attributes?["CIAttributeMin"] as? NSNumber

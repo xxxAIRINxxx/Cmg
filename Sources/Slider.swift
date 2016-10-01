@@ -8,27 +8,27 @@
 
 import Foundation
 
-public class Slider {
+open class Slider {
     
-    public var name: String
-    public let range: Range
+    open var name: String
+    open let range: Range
     
-    private let bindHandler: (Float -> Void)
+    fileprivate let bindHandler: ((Float) -> Void)
     
-    public var currentValue: Float {
+    open var currentValue: Float {
         didSet {
             self.bindHandler(self.range.convertValue(self.currentValue))
         }
     }
     
-    public init(_ name: String, _ range: Range, _ handler: (Float -> Void)) {
+    public init(_ name: String, _ range: Range, _ handler: @escaping ((Float) -> Void)) {
         self.name = name
         self.range = range
         self.bindHandler = handler
         self.currentValue = range.initialValue
     }
     
-    public func resetValue() {
+    open func resetValue() {
         self.currentValue = self.range.initialValue
     }
 }

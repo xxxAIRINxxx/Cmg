@@ -12,20 +12,20 @@ public final class Benchmarker {
     
     public static let shared = Benchmarker()
     
-    private var benchmarks : [Benchmark] = []
+    fileprivate var benchmarks : [Benchmark] = []
     
-    public func start(key: String = #file + #function) {
+    public func start(_ key: String = #file + #function) {
         let filterd = self.benchmarks.filter({ return $0.key == key }).first
         if filterd == nil {
             self.benchmarks.append(Benchmark(key: key))
         }
     }
     
-    public func cancel(key: String = "") {
+    public func cancel(_ key: String = "") {
         self.benchmarks = self.benchmarks.filter() { return $0.key != key }
     }
     
-    public func finish(key: String = "") -> String {
+    public func finish(_ key: String = "") -> String {
         guard let _benchmark = self.benchmarks.filter({ return $0.key == key }).first else {
             return "Benchmarker Error - Not Found"
         }
@@ -42,7 +42,7 @@ public final class Benchmark {
     public let key : String
     
     public convenience init(fileName: String = #file , funcName: String = #function) {
-        let _fileName = fileName.componentsSeparatedByString("/").last ?? ""
+        let _fileName = fileName.components(separatedBy: "/").last ?? ""
         let key = _fileName + " " + funcName
         self.init(key: key)
     }

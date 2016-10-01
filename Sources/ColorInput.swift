@@ -13,12 +13,12 @@ import CoreImage
 public final class ColorInput: FilterInputable {
     
     public let key: String
-    public private(set) var red: CGFloat = 0.0
-    public private(set) var green: CGFloat = 0.0
-    public private(set) var blue: CGFloat = 0.0
-    public private(set) var alpha: CGFloat = 0.0
+    public fileprivate(set) var red: CGFloat = 0.0
+    public fileprivate(set) var green: CGFloat = 0.0
+    public fileprivate(set) var blue: CGFloat = 0.0
+    public fileprivate(set) var alpha: CGFloat = 0.0
     
-    private let initialValue: UIColor
+    fileprivate let initialValue: UIColor
     
     public init(filter: CIFilter, key: String) {
         self.key = key
@@ -52,8 +52,8 @@ public final class ColorInput: FilterInputable {
         ]
     }
     
-    public func setInput(filter: CIFilter) {
-        filter.setValue(CIColor(CGColor: self.rgbaCcolor.CGColor), forKey: self.key)
+    public func setInput(_ filter: CIFilter) {
+        filter.setValue(CIColor(cgColor: self.rgbaCcolor.cgColor), forKey: self.key)
     }
     
     public func resetValue() {
@@ -63,51 +63,51 @@ public final class ColorInput: FilterInputable {
 
 extension ColorInput {
     
-    public func setRed(red: CGFloat) {
+    public func setRed(_ red: CGFloat) {
         var v: CGFloat = red
         if v > 255.0 { v = 255.0 }
         if v < 0.0 { v = 0.0 }
         self.red = v
     }
     
-    public func setGreen(green: CGFloat) {
+    public func setGreen(_ green: CGFloat) {
         var v: CGFloat = green
         if v > 255.0 { v = 255.0 }
         if v < 0.0 { v = 0.0 }
         self.green = v
     }
     
-    public func setBlue(blue: CGFloat) {
+    public func setBlue(_ blue: CGFloat) {
         var v: CGFloat = blue
         if v > 255.0 { v = 255.0 }
         if v < 0.0 { v = 0.0 }
         self.blue = v
     }
     
-    public func setAlpha(alpha: CGFloat) {
+    public func setAlpha(_ alpha: CGFloat) {
         var v: CGFloat = alpha
         if v > 255.0 { v = 255.0 }
         if v < 0.0 { v = 0.0 }
         self.alpha = v
     }
     
-    public func setColor(color: UIColor) {
-        func zeroIfDodgy(value: CGFloat) -> CGFloat {
-            return isnan(value) || isinf(value) ? 0.0 : value
+    public func setColor(_ color: UIColor) {
+        func zeroIfDodgy(_ value: CGFloat) -> CGFloat {
+            return value.isNaN || value.isInfinite ? 0.0 : value
         }
         
-        let colorRef = CGColorGetComponents(color.CGColor)
-        if CGColorGetNumberOfComponents(color.CGColor) == 4 {
-            self.red = 255 * zeroIfDodgy(colorRef[0])
-            self.green = 255 * zeroIfDodgy(colorRef[1])
-            self.blue = 255 * zeroIfDodgy(colorRef[2])
-            self.alpha = 255 * zeroIfDodgy(colorRef[3])
-        } else if CGColorGetNumberOfComponents(color.CGColor) == 2 {
-            let greyComponent = 255 * zeroIfDodgy(colorRef[0])
+        let colorRef = color.cgColor.components
+        if color.cgColor.numberOfComponents == 4 {
+            self.red = 255 * zeroIfDodgy((colorRef?[0])!)
+            self.green = 255 * zeroIfDodgy((colorRef?[1])!)
+            self.blue = 255 * zeroIfDodgy((colorRef?[2])!)
+            self.alpha = 255 * zeroIfDodgy((colorRef?[3])!)
+        } else if color.cgColor.numberOfComponents == 2 {
+            let greyComponent = 255 * zeroIfDodgy((colorRef?[0])!)
             self.red = greyComponent
             self.green = greyComponent
             self.blue = greyComponent
-            self.alpha = 255 * zeroIfDodgy(colorRef[1])
+            self.alpha = 255 * zeroIfDodgy((colorRef?[1])!)
         }
     }
     

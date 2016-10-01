@@ -16,7 +16,7 @@ protocol PhotoProcessable: class {
     var sliders: [Slider] { get }
     var thumbnailImage: UIImage? { get set }
     
-    func processing(uiImage: UIImage) -> UIImage
+    func processing(_ uiImage: UIImage) -> UIImage
     func resetSliderValues()
 }
 
@@ -36,8 +36,8 @@ final class Filter<T: Cmg.Processable>: PhotoProcessable {
         self.internalFilter = filter
     }
     
-    func processing(uiImage: UIImage) -> UIImage {
-        let b = Benchmark(key: self.name); defer { b.finish() }
+    func processing(_ uiImage: UIImage) -> UIImage {
+        let b = Benchmark(key: self.name); defer { _ = b.finish() }
         
         let filteredImage: UIImage? = self.internalFilter.processing(uiImage)
         if filteredImage == nil {
@@ -55,14 +55,14 @@ final class Filter<T: Cmg.Processable>: PhotoProcessable {
 struct FilterGenerator {}
 
 enum Image {
-    case Original
-    case Thumbnail
+    case original
+    case thumbnail
     
     var size : CGSize {
         switch self {
-        case .Original:
+        case .original:
             return CGSize(width: 1200, height: 1200)
-        case .Thumbnail:
+        case .thumbnail:
             return CGSize(width: 600, height: 600)
         }
     }
@@ -71,7 +71,7 @@ enum Image {
 extension FilterGenerator {
     
     static var originalImage: UIImage = UIImage(named: "sample.jpg")!
-    static var thumbnailImage: UIImage = UIImage(named: "sample.jpg")!.cmg_resizeAtAspectFill(Image.Thumbnail.size)!
+    static var thumbnailImage: UIImage = UIImage(named: "sample.jpg")!.cmg_resizeAtAspectFill(Image.thumbnail.size)!
     
     static func generate() -> [PhotoProcessable] {
         var filters: [PhotoProcessable] = []
@@ -116,10 +116,16 @@ extension FilterGenerator {
             0.0, 1.0, 0.0, 1.0,
             0.9, 0.6, 0.8, 0.2,
             1.0, 0.4, 0.0, 1.0]
-        let cubeData = NSData(bytes: cubeArray, length: sizeof(Double) * cubeArray.count)
+        let bytes = UnsafeMutablePointer<UInt8>.allocate(capacity: cubeArray.count)
+        let count = MemoryLayout<Double>.size * cubeArray.count
+        let cubeData = Data(bytes: bytes, count: count)
+        defer {
+            bytes.deinitialize()
+            bytes.deallocate(capacity: cubeArray.count)
+        }
         
         filters.append(Filter(ColorCube(inputCubeData: cubeData)))
-        filters.append(Filter(ColorCubeWithColorSpace(inputCubeData: cubeData, inputColorSpace: CGColorSpaceCreateDeviceRGB()!)))
+        filters.append(Filter(ColorCubeWithColorSpace(inputCubeData: cubeData, inputColorSpace: CGColorSpaceCreateDeviceRGB())))
         filters.append(Filter(ColorInvert()))
         filters.append(Filter(ColorMap(uiImage: blendImage)))
         filters.append(Filter(ColorMonochrome()))

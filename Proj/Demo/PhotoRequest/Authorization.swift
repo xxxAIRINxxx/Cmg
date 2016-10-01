@@ -13,59 +13,59 @@ import Photos
 
 public enum AuthorizedErrorType {
     
-    case Restricted
-    case Denied
+    case restricted
+    case denied
 }
 
 public enum AuthorizedResult {
     
-    case Success
-    case Error(AuthorizedErrorType)
+    case success
+    case error(AuthorizedErrorType)
 }
 
-public typealias AuthorizedCompletion = (AuthorizedResult -> Void)
+public typealias AuthorizedCompletion = ((AuthorizedResult) -> Void)
 
 public final class Authorization {
     
-    private init() {}
+    fileprivate init() {}
     
-    public static func camera(completion: AuthorizedCompletion?) {
-        let status = AVCaptureDevice.authorizationStatusForMediaType(AVMediaTypeVideo)
+    public static func camera(_ completion: AuthorizedCompletion?) {
+        let status = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
         switch status {
-        case .Authorized:
-            completion?(AuthorizedResult.Success)
-        case .Restricted:
-            completion?(AuthorizedResult.Error(.Restricted))
-        case .Denied:
-            completion?(AuthorizedResult.Error(.Denied))
-        case .NotDetermined:
-            AVCaptureDevice.requestAccessForMediaType(AVMediaTypeVideo) { granted in
-                dispatch_async(dispatch_get_main_queue()) {
+        case .authorized:
+            completion?(AuthorizedResult.success)
+        case .restricted:
+            completion?(AuthorizedResult.error(.restricted))
+        case .denied:
+            completion?(AuthorizedResult.error(.denied))
+        case .notDetermined:
+            AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo) { granted in
+                DispatchQueue.main.async {
                     if granted {
-                        completion?(AuthorizedResult.Success)
+                        completion?(AuthorizedResult.success)
                     } else {
-                        completion?(AuthorizedResult.Error(.Denied))
+                        completion?(AuthorizedResult.error(.denied))
                     }
                 }
             }
         }
     }
     
-    public static func photo(completion: AuthorizedCompletion?) {
+    public static func photo(_ completion: AuthorizedCompletion?) {
         switch PHPhotoLibrary.authorizationStatus() {
-        case .Authorized:
-            completion?(AuthorizedResult.Success)
-        case .Restricted:
-            completion?(AuthorizedResult.Error(.Restricted))
-        case .Denied:
-            completion?(AuthorizedResult.Error(.Denied))
-        case .NotDetermined:
+        case .authorized:
+            completion?(AuthorizedResult.success)
+        case .restricted:
+            completion?(AuthorizedResult.error(.restricted))
+        case .denied:
+            completion?(AuthorizedResult.error(.denied))
+        case .notDetermined:
             PHPhotoLibrary.requestAuthorization() { status in
-                dispatch_async(dispatch_get_main_queue()) {
-                    if status == PHAuthorizationStatus.Authorized {
-                        completion?(AuthorizedResult.Success)
+                DispatchQueue.main.async {
+                    if status == PHAuthorizationStatus.authorized {
+                        completion?(AuthorizedResult.success)
                     } else {
-                        completion?(AuthorizedResult.Error(.Denied))
+                        completion?(AuthorizedResult.error(.denied))
                     }
                 }
             }

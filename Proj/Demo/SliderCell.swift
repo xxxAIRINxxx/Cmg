@@ -12,7 +12,7 @@ import Cmg
 
 final class SliderCell: UITableViewCell {
     
-    var upsdateSliderHandler: (Float -> Void)?
+    var upsdateSliderHandler: ((Float) -> Void)?
     
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var slider: UISlider!
@@ -28,7 +28,7 @@ final class SliderCell: UITableViewCell {
 
 extension SliderCell {
     
-    @IBAction private func changeSliderValue(sender: UISlider) {
+    @IBAction fileprivate func changeSliderValue(_ sender: UISlider) {
         self.valueLabel.text = sender.value.description
         self.upsdateSliderHandler?(sender.value)
     }

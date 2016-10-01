@@ -12,9 +12,9 @@ import Cmg
 
 final class SliderTableView: UITableView {
     
-    var upsdateSliderHandler: (Void -> Void)?
+    var upsdateSliderHandler: ((Void) -> Void)?
     
-    private var sliders: [Slider] = []
+    fileprivate var sliders: [Slider] = []
 
     override init(frame: CGRect, style: UITableViewStyle) {
         super.init(frame: frame, style: style)
@@ -26,13 +26,13 @@ final class SliderTableView: UITableView {
         self.commonInit()
     }
     
-    private func commonInit() {
-        self.registerNib(UINib(nibName: "SliderCell", bundle: nil), forCellReuseIdentifier: "SliderCell")
+    fileprivate func commonInit() {
+        self.register(UINib(nibName: "SliderCell", bundle: nil), forCellReuseIdentifier: "SliderCell")
         self.dataSource = self
         self.delegate = self
     }
     
-    func updateSliders(filter: PhotoProcessable) {
+    func updateSliders(_ filter: PhotoProcessable) {
         self.sliders = filter.sliders
         self.reloadData()
     }
@@ -40,14 +40,14 @@ final class SliderTableView: UITableView {
 
 extension SliderTableView: UITableViewDataSource {
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.sliders.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("SliderCell", forIndexPath: indexPath) as! SliderCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SliderCell", for: indexPath) as! SliderCell
         
-        let slider = self.sliders[indexPath.row]
+        let slider = self.sliders[(indexPath as NSIndexPath).row]
         
         cell.label.text = slider.name
         cell.valueLabel.text = slider.currentValue.description
@@ -65,7 +65,7 @@ extension SliderTableView: UITableViewDataSource {
 
 extension SliderTableView: UITableViewDelegate {
     
-    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

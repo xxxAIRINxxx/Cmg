@@ -16,17 +16,15 @@ public struct AutoAdjustEnhance: Processable {
     
     public init() {}
     
-    public func processing(ciImage: CIImage?) -> CIImage? {
+    public func processing(_ ciImage: CIImage?) -> CIImage? {
         guard let _ciImage = ciImage else { return nil }
         
-        let filters = _ciImage.autoAdjustmentFiltersWithOptions([kCIImageAutoAdjustEnhance : true, kCIImageAutoAdjustRedEye : false])
+        let filters = _ciImage.autoAdjustmentFilters(options: [kCIImageAutoAdjustEnhance : true, kCIImageAutoAdjustRedEye : false])
         
-        let outputImage = filters.reduce(_ciImage) {
-            $0.1.setValue($0.0, forKey: kCIInputImageKey)
-            return $0.1.outputImage!
+        return filters.reduce(ciImage) { result, filter in
+            filter.setValue(result, forKey: kCIInputImageKey)
+            return filter.outputImage
         }
-        
-        return outputImage
     }
 }
 
@@ -36,16 +34,14 @@ public struct AutoAdjustRedEye: Processable {
     
     public init() {}
     
-    public func processing(ciImage: CIImage?) -> CIImage? {
+    public func processing(_ ciImage: CIImage?) -> CIImage? {
         guard let _ciImage = ciImage else { return nil }
         
-        let filters = _ciImage.autoAdjustmentFiltersWithOptions([kCIImageAutoAdjustEnhance : false, kCIImageAutoAdjustRedEye : true])
+        let filters = _ciImage.autoAdjustmentFilters(options: [kCIImageAutoAdjustEnhance : false, kCIImageAutoAdjustRedEye : true])
         
-        let outputImage = filters.reduce(_ciImage) {
-            $0.1.setValue($0.0, forKey: kCIInputImageKey)
-            return $0.1.outputImage!
+        return filters.reduce(ciImage) { result, filter in
+            filter.setValue(result, forKey: kCIInputImageKey)
+            return filter.outputImage
         }
-        
-        return outputImage
     }
 }

@@ -17,13 +17,13 @@ public final class StringInput: FilterInputable {
     public let needDataEncode: Bool
     public let encoding: UInt
     
-    private let initialValue: String
+    fileprivate let initialValue: String
     
     public init(filter: CIFilter,
         key: String,
         _ value: String? = nil,
         _ needDataEncode: Bool = true,
-        _ encoding: UInt = NSUnicodeStringEncoding) {
+        _ encoding: UInt = String.Encoding.unicode.rawValue) {
             self.key = key
             if let _value = value {
                 self.value = _value
@@ -40,9 +40,9 @@ public final class StringInput: FilterInputable {
         return []
     }
     
-    public func setInput(filter: CIFilter) {
+    public func setInput(_ filter: CIFilter) {
         if self.needDataEncode {
-            filter.setValue(self.value.dataUsingEncoding(self.encoding), forKey: self.key)
+            filter.setValue(self.value.data(using: String.Encoding(rawValue: self.encoding)), forKey: self.key)
         } else {
             filter.setValue(self.value, forKey: self.key)
         }

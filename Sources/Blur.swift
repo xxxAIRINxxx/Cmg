@@ -129,7 +129,7 @@ InputAmountAvailable, InputCenterAvailable {
     
     public init(imageSize: CGSize) {
         self.inputAmount = ScalarInput(filter: self.filter, key: "inputAmount")
-        self.inputCenter = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, kCIInputCenterKey)
+        self.inputCenter = VectorInput(.position(maximumSize: Vector2(size: imageSize)), self.filter, kCIInputCenterKey)
     }
     
     public func inputs() -> [FilterInputable] {

@@ -20,9 +20,9 @@ InputRedCoefficientsAvailable, InputGreenCoefficientsAvailable, InputBlueCoeffic
     public let inputBlueCoefficients: VectorInput
     
     public init() {
-        self.inputRedCoefficients = VectorInput(.Other(count: 10), self.filter, "inputRedCoefficients")
-        self.inputGreenCoefficients = VectorInput(.Other(count: 10), self.filter, "inputGreenCoefficients")
-        self.inputBlueCoefficients = VectorInput(.Other(count: 10), self.filter, "inputBlueCoefficients")
+        self.inputRedCoefficients = VectorInput(.other(count: 10), self.filter, "inputRedCoefficients")
+        self.inputGreenCoefficients = VectorInput(.other(count: 10), self.filter, "inputGreenCoefficients")
+        self.inputBlueCoefficients = VectorInput(.other(count: 10), self.filter, "inputBlueCoefficients")
     }
     
     public func inputs() -> [FilterInputable] {
@@ -39,9 +39,9 @@ public struct ColorCube: Filterable, InputCubeDimensionAvailable {
     public let filter: CIFilter = CIFilter(name: "CIColorCube")!
     
     public let inputCubeDimension: ScalarInput
-    public var cubeData: NSData
+    public var cubeData: Data
     
-    public init(inputCubeData: NSData) {
+    public init(inputCubeData: Data) {
         self.inputCubeDimension = ScalarInput(filter: self.filter, key: "inputCubeDimension")
         self.cubeData = inputCubeData
     }
@@ -61,10 +61,10 @@ public struct ColorCubeWithColorSpace: Filterable, InputCubeDimensionAvailable {
     public let filter: CIFilter = CIFilter(name: "CIColorCubeWithColorSpace")!
     
     public let inputCubeDimension: ScalarInput
-    public var cubeData: NSData
-    public var colorSpace: CGColorSpaceRef
+    public var cubeData: Data
+    public var colorSpace: CGColorSpace
     
-    public init(inputCubeData: NSData, inputColorSpace: CGColorSpaceRef) {
+    public init(inputCubeData: Data, inputColorSpace: CGColorSpace) {
         self.inputCubeDimension = ScalarInput(filter: self.filter, key: "inputCubeDimension")
         self.cubeData = inputCubeData
         self.colorSpace = inputColorSpace
@@ -96,7 +96,7 @@ InputImageAvailable {
     public let inputImage: ImageInput
     
     public init(uiImage: UIImage) {
-        self.inputImage = ImageInput(image: CIImage(CGImage: uiImage.CGImage!), key: "inputGradientImage")
+        self.inputImage = ImageInput(image: CIImage(cgImage: uiImage.cgImage!), key: "inputGradientImage")
     }
     
     public init(ciImage: CIImage) {
@@ -296,7 +296,7 @@ InputIntensityAvailable, InputCenterAvailable {
     
     public init(imageSize: CGSize) {
         self.inputIntensity = ScalarInput(filter: self.filter, key: kCIInputIntensityKey)
-        self.inputCenter = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, kCIInputCenterKey)
+        self.inputCenter = VectorInput(.position(maximumSize: Vector2(size: imageSize)), self.filter, kCIInputCenterKey)
     }
     
     public func inputs() -> [FilterInputable] {

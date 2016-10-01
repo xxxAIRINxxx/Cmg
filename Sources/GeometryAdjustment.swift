@@ -36,7 +36,7 @@ InputRectangleAvailable {
     public let inputRectangle: VectorInput
     
     public init(imageSize: CGSize) {
-        self.inputRectangle = VectorInput(.Extent(extent: Vector4(size: imageSize)), self.filter, "inputRectangle")
+        self.inputRectangle = VectorInput(.extent(extent: Vector4(size: imageSize)), self.filter, "inputRectangle")
     }
     
     public func inputs() -> [FilterInputable] {
@@ -79,10 +79,10 @@ InputBottomLeftAvailable {
     public let inputBottomRight: VectorInput
     
     public init(imageSize: CGSize) {
-        self.inputTopLeft = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, "inputTopLeft")
-        self.inputTopRight = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, "inputTopRight")
-        self.inputBottomLeft = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, "inputBottomLeft")
-        self.inputBottomRight = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, "inputBottomRight")
+        self.inputTopLeft = VectorInput(.position(maximumSize: Vector2(size: imageSize)), self.filter, "inputTopLeft")
+        self.inputTopRight = VectorInput(.position(maximumSize: Vector2(size: imageSize)), self.filter, "inputTopRight")
+        self.inputBottomLeft = VectorInput(.position(maximumSize: Vector2(size: imageSize)), self.filter, "inputBottomLeft")
+        self.inputBottomRight = VectorInput(.position(maximumSize: Vector2(size: imageSize)), self.filter, "inputBottomRight")
     }
     
     public func inputs() -> [FilterInputable] {
@@ -107,10 +107,10 @@ InputBottomLeftAvailable {
     public let inputBottomRight: VectorInput
     
     public init(imageSize: CGSize) {
-        self.inputTopLeft = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, "inputTopLeft")
-        self.inputTopRight = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, "inputTopRight")
-        self.inputBottomLeft = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, "inputBottomLeft")
-        self.inputBottomRight = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, "inputBottomRight")
+        self.inputTopLeft = VectorInput(.position(maximumSize: Vector2(size: imageSize)), self.filter, "inputTopLeft")
+        self.inputTopRight = VectorInput(.position(maximumSize: Vector2(size: imageSize)), self.filter, "inputTopRight")
+        self.inputBottomLeft = VectorInput(.position(maximumSize: Vector2(size: imageSize)), self.filter, "inputBottomLeft")
+        self.inputBottomRight = VectorInput(.position(maximumSize: Vector2(size: imageSize)), self.filter, "inputBottomRight")
     }
     
     public func inputs() -> [FilterInputable] {
@@ -136,11 +136,11 @@ InputBottomRightAvailable, InputBottomLeftAvailable {
     public let inputBottomRight: VectorInput
     
     public init(imageSize: CGSize) {
-        self.inputExtent = VectorInput(.Extent(extent: Vector4(size: imageSize)), self.filter, kCIInputExtentKey)
-        self.inputTopLeft = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, "inputTopLeft")
-        self.inputTopRight = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, "inputTopRight")
-        self.inputBottomLeft = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, "inputBottomLeft")
-        self.inputBottomRight = VectorInput(.Position(maximumSize: Vector2(size: imageSize)), self.filter, "inputBottomRight")
+        self.inputExtent = VectorInput(.extent(extent: Vector4(size: imageSize)), self.filter, kCIInputExtentKey)
+        self.inputTopLeft = VectorInput(.position(maximumSize: Vector2(size: imageSize)), self.filter, "inputTopLeft")
+        self.inputTopRight = VectorInput(.position(maximumSize: Vector2(size: imageSize)), self.filter, "inputTopRight")
+        self.inputBottomLeft = VectorInput(.position(maximumSize: Vector2(size: imageSize)), self.filter, "inputBottomLeft")
+        self.inputBottomRight = VectorInput(.position(maximumSize: Vector2(size: imageSize)), self.filter, "inputBottomRight")
     }
     
     public func inputs() -> [FilterInputable] {
