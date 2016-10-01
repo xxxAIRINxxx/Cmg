@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "Cmg"
-  s.version      = "1.1.0"
+  s.version      = "1.1.1"
   s.summary      = "Easy image filtering library of using Core Image."
   s.homepage     = "https://github.com/xxxAIRINxxx/Cmg"
   s.license      = 'MIT'
