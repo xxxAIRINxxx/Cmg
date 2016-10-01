@@ -1,8 +1,8 @@
 # Cmg
 
-[![Swift 2.2](https://img.shields.io/badge/Swift-2.2-orange.svg?style=flat)](https://developer.apple.com/swift/)
+[![Swift 3.0](https://img.shields.io/badge/Swift-3.0-orange.svg?style=flat)](https://developer.apple.com/swift/)
 [![Platforms iOS](https://img.shields.io/badge/Platforms-iOS-lightgray.svg?style=flat)](https://developer.apple.com/swift/)
-[![Xcode 7.3+](https://img.shields.io/badge/Xcode-7.3+-blue.svg?style=flat)](https://developer.apple.com/swift/)
+[![Xcode 8.0+](https://img.shields.io/badge/Xcode-8.0+-blue.svg?style=flat)](https://developer.apple.com/swift/)
 
 ![CmgImage](Images/CmgImage.png "CmgImage")
 
@@ -12,9 +12,9 @@ Cmg is inspired by [Filterpedia](https://github.com/FlexMonkey/Filterpedia).
 
 ## Requirements
 
-* Xcode 7.3+
+* Xcode 8.0+
 * iOS 8.0+
-* Swift 2.2+
+* Swift 3.0+
 
 ## Features
 
