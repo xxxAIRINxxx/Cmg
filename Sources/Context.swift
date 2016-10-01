@@ -22,7 +22,7 @@ public final class Context {
             return [
                 kCIContextPriorityRequestLow : true,
                 kCIContextWorkingColorSpace : NSNull(),
-                CIContextPriorityRequestLow: true
+                kCIContextPriorityRequestLow: true
             ]
         #else
             return [
