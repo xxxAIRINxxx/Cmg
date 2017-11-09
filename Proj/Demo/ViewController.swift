@@ -72,17 +72,17 @@ final class ViewController: UIViewController {
 
 // MARK: - UICollectionViewDataSource
 
-extension ViewController {
+extension ViewController : UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.filters.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAtIndexPath indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         return collectionView.dequeueReusableCell(withReuseIdentifier: "FilterCell", for: indexPath)
     }
     
-    func collectionView(_ collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         let filter = self.filters[(indexPath as NSIndexPath).row]
         
         switch cell {
@@ -104,9 +104,9 @@ extension ViewController {
 
 // MARK: - UICollectionViewDelegate
 
-extension ViewController {
+extension ViewController : UICollectionViewDelegate {
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let filter = self.filters[(indexPath as NSIndexPath).row]
         
         if (self.selectedFilter.flatMap() { $0 === filter }) == true { return }
