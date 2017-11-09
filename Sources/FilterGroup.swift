@@ -48,6 +48,6 @@ public struct FilterGroup: Processable {
     }
     
     public func processing(_ ciImage: CIImage?) -> CIImage? {
-        return self.filters.reduce(ciImage) { return $0.1.processing($0.0) }
+        return self.filters.reduce(ciImage) { return $1.processing($0) }
     }
 }

@@ -30,7 +30,7 @@ public final class Authorization {
     fileprivate init() {}
     
     public static func camera(_ completion: AuthorizedCompletion?) {
-        let status = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
+        let status = AVCaptureDevice.authorizationStatus(for: AVMediaType.video)
         switch status {
         case .authorized:
             completion?(AuthorizedResult.success)
@@ -39,7 +39,7 @@ public final class Authorization {
         case .denied:
             completion?(AuthorizedResult.error(.denied))
         case .notDetermined:
-            AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo) { granted in
+            AVCaptureDevice.requestAccess(for: AVMediaType.video) { granted in
                 DispatchQueue.main.async {
                     if granted {
                         completion?(AuthorizedResult.success)

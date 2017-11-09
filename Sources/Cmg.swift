@@ -99,7 +99,7 @@ extension Filterable where Self: FilterInputCollectionType {
     
     public func sliders() -> [Slider] {
         let value: [Slider] = []
-        return self.inputs().reduce(value) { $0.0 + $0.1.sliders() }
+        return self.inputs().reduce(value) { $0 + $1.sliders() }
     }
     
     public func setupFilter() {

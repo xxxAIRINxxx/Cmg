@@ -40,7 +40,7 @@ extension UIImage {
         
         let filter = AffineTransform()
         filter.setScale(scale.x, scale.y)
-        return filter.processingIntoCIImage(self)?.cropping(to: bounds).generateUIImage(self)
+        return filter.processingIntoCIImage(self)?.cropped(to: bounds).generateUIImage(self)
     }
     
     public func cmg_resizeAtAspectFit(_ newSize: CGSize) -> UIImage? {

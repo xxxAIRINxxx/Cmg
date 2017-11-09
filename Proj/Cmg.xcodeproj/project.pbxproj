@@ -298,7 +298,7 @@
 					};
 					91EEBA2B1C603F13008E25FC = {
 						CreatedOnToolsVersion = 7.2;
-						LastSwiftMigration = 0810;
+						LastSwiftMigration = 0910;
 					};
 				};
 			};
@@ -547,7 +547,8 @@
 				PRODUCT_NAME = Cmg;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -567,7 +568,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = xxxAIRINxxx.Cmg;
 				PRODUCT_NAME = Cmg;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

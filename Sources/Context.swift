@@ -39,7 +39,7 @@ public final class Context {
     public var ciContext : CIContext?
     
     fileprivate init() {
-        self.defaultEgleContext = EAGLContext(api: .openGLES2)
+        self.defaultEgleContext = EAGLContext(api: .openGLES2)!
         self.defaultCIContext = CIContext(eaglContext: self.defaultEgleContext, options: Context.options)
     }
 }
