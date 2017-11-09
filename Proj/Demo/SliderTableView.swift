@@ -12,7 +12,7 @@ import Cmg
 
 final class SliderTableView: UITableView {
     
-    var upsdateSliderHandler: ((Void) -> Void)?
+    var upsdateSliderHandler: (() -> Void)?
     
     fileprivate var sliders: [Slider] = []
 

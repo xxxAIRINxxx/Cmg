@@ -8,7 +8,7 @@
 
 import UIKit
 
-public typealias ActionSheetCompletion = ((Void) -> Void)
+public typealias ActionSheetCompletion = (() -> Void)
 
 private struct ActionInfo {
     
