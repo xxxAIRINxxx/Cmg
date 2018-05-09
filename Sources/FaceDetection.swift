@@ -53,7 +53,7 @@ public struct FaceDetection {
         guard let ciImage = CIImage.generate(uiImage) else { return [] }
         
         let detector = CIDetector(ofType: CIDetectorTypeFace, context: nil, options: self.accuracy.options)
-        return detector!.features(in: ciImage, options: [:]).flatMap() { $0 as? CIFaceFeature }
+        return detector!.features(in: ciImage, options: [:]).compactMap() { $0 as? CIFaceFeature }
     }
     
     public func detectionOfFaceBounds(_ image: UIImage) -> [CGRect] {

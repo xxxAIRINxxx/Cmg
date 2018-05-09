@@ -18,7 +18,7 @@ public final class Context {
     public static var ciContext : CIContext { return Context.shared.ciContext ?? Context.shared.defaultCIContext }
     
     public static var options: [String : Any] {
-        #if (arch(i386) || arch(x86_64)) && os(iOS)
+        #if targetEnvironment(simulator)
             return [
                 kCIContextPriorityRequestLow : true,
                 kCIContextWorkingColorSpace : NSNull(),
