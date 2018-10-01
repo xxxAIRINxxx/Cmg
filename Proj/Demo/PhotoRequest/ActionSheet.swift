@@ -12,11 +12,11 @@ public typealias ActionSheetCompletion = (() -> Void)
 
 private struct ActionInfo {
     
-    let type : UIAlertActionStyle
+    let type : UIAlertAction.Style
     let title : String
     let completion : ActionSheetCompletion?
     
-    init(_ type: UIAlertActionStyle, _ title: String,  _ completion: ActionSheetCompletion?) {
+    init(_ type: UIAlertAction.Style, _ title: String,  _ completion: ActionSheetCompletion?) {
         self.type = type
         self.title = title
         self.completion = completion

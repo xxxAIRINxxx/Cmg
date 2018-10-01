@@ -38,7 +38,7 @@ final class ViewController: UIViewController {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
         flowLayout.headerReferenceSize = CGSize.zero
-        flowLayout.sectionInset = UIEdgeInsetsMake(10.0, 10.0, 0.0, 10.0)
+        flowLayout.sectionInset = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 0.0, right: 10.0)
         flowLayout.itemSize = CGSize(width: 80, height: 110)
         flowLayout.minimumLineSpacing = 10
         flowLayout.minimumInteritemSpacing = 0

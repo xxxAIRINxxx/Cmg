@@ -11,7 +11,7 @@ import Foundation
 open class Slider {
     
     open var name: String
-    open let range: Range
+    public let range: Range
     
     fileprivate let bindHandler: ((Float) -> Void)
     

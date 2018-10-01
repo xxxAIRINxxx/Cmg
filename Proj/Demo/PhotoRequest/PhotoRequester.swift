@@ -55,7 +55,7 @@ public final class PhotoRequester: NSObject, UIImagePickerControllerDelegate, UI
         self.shared.requestPhoto(parentViewController, .savedPhotosAlbum, completion)
     }
     
-    fileprivate func requestPhoto(_ parentViewController: UIViewController, _ sourceType: UIImagePickerControllerSourceType , _ completion: PhotoResquestCompletion?) {
+    fileprivate func requestPhoto(_ parentViewController: UIViewController, _ sourceType: UIImagePickerController.SourceType , _ completion: PhotoResquestCompletion?) {
         
         if !UIImagePickerController.isSourceTypeAvailable(sourceType) {
             completion?(PhotoResquestResult.faild)
@@ -91,8 +91,8 @@ public final class PhotoRequester: NSObject, UIImagePickerControllerDelegate, UI
 
 extension PhotoRequester {
     
-    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
         picker.dismiss(animated: true) { [unowned self] in
             self.completionHandler?(PhotoResquestResult.success(image: image))
             self.completionHandler = nil

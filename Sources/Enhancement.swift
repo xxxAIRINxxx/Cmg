@@ -19,7 +19,7 @@ public struct AutoAdjustEnhance: Processable {
     public func processing(_ ciImage: CIImage?) -> CIImage? {
         guard let _ciImage = ciImage else { return nil }
         
-        let filters = _ciImage.autoAdjustmentFilters(options: [kCIImageAutoAdjustEnhance : true, kCIImageAutoAdjustRedEye : false])
+        let filters = _ciImage.autoAdjustmentFilters(options: [CIImageAutoAdjustmentOption.enhance : true, CIImageAutoAdjustmentOption.redEye : false])
         
         return filters.reduce(ciImage) { result, filter in
             filter.setValue(result, forKey: kCIInputImageKey)
@@ -37,7 +37,7 @@ public struct AutoAdjustRedEye: Processable {
     public func processing(_ ciImage: CIImage?) -> CIImage? {
         guard let _ciImage = ciImage else { return nil }
         
-        let filters = _ciImage.autoAdjustmentFilters(options: [kCIImageAutoAdjustEnhance : false, kCIImageAutoAdjustRedEye : true])
+        let filters = _ciImage.autoAdjustmentFilters(options: [CIImageAutoAdjustmentOption.enhance : false, CIImageAutoAdjustmentOption.redEye : true])
         
         return filters.reduce(ciImage) { result, filter in
             filter.setValue(result, forKey: kCIInputImageKey)

@@ -17,17 +17,17 @@ public final class Context {
     public static var egleContext : EAGLContext { return Context.shared.egleContext ?? Context.shared.defaultEgleContext }
     public static var ciContext : CIContext { return Context.shared.ciContext ?? Context.shared.defaultCIContext }
     
-    public static var options: [String : Any] {
+    public static var options: [CIContextOption : Any] {
         #if targetEnvironment(simulator)
             return [
-                kCIContextPriorityRequestLow : true,
-                kCIContextWorkingColorSpace : NSNull(),
-                kCIContextPriorityRequestLow: true
+                CIContextOption.priorityRequestLow : true,
+                CIContextOption.workingColorSpace : NSNull(),
+                CIContextOption.priorityRequestLow: true
             ]
         #else
             return [
-                kCIContextUseSoftwareRenderer : false,
-                kCIContextWorkingColorSpace : NSNull()
+                CIContextOption.useSoftwareRenderer : false,
+                CIContextOption.workingColorSpace : NSNull()
             ]
         #endif
     }

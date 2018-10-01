@@ -16,7 +16,7 @@ final class SliderTableView: UITableView {
     
     fileprivate var sliders: [Slider] = []
 
-    override init(frame: CGRect, style: UITableViewStyle) {
+    override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
         self.commonInit()
     }
