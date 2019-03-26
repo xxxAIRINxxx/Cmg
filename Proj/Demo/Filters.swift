@@ -120,8 +120,8 @@ extension FilterGenerator {
         let count = MemoryLayout<Double>.size * cubeArray.count
         let cubeData = Data(bytes: bytes, count: count)
         defer {
-            bytes.deinitialize()
-            bytes.deallocate(capacity: cubeArray.count)
+            bytes.deinitialize(count: cubeArray.count)
+            bytes.deallocate()
         }
         
         filters.append(Filter(ColorCube(inputCubeData: cubeData)))

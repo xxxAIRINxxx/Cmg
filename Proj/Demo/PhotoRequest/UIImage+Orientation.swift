@@ -28,6 +28,8 @@ extension UIImage {
             transform = transform.rotated(by: CGFloat(-Double.pi / 2))
         case .up, .upMirrored:
             break
+        @unknown default:
+            fatalError()
         }
         
         switch (self.imageOrientation) {
@@ -39,6 +41,8 @@ extension UIImage {
             transform = transform.scaledBy(x: -1, y: 1)
         case .up, .down, .left, .right:
             break
+        @unknown default:
+            fatalError()
         }
         
         let width = Int(self.size.width)

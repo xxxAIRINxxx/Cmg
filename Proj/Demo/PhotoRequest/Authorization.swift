@@ -48,6 +48,8 @@ public final class Authorization {
                     }
                 }
             }
+        @unknown default:
+            fatalError()
         }
     }
     
@@ -69,6 +71,8 @@ public final class Authorization {
                     }
                 }
             }
+        @unknown default:
+            fatalError()
         }
     }
 }

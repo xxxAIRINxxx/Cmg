@@ -83,6 +83,8 @@ public final class PhotoRequester: NSObject, UIImagePickerControllerDelegate, UI
             Authorization.camera(resultBlock)
         case .photoLibrary, .savedPhotosAlbum:
             Authorization.photo(resultBlock)
+        @unknown default:
+            fatalError()
         }
     }
 }
